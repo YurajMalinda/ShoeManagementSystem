@@ -1,0 +1,168 @@
+.page{
+    height: 100vh;
+}
+
+/*..................header..................*/
+
+header{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    z-index: 1;
+}
+
+header>nav:nth-child(1){
+    position: absolute;
+    left: 6%;
+    margin: auto;
+    align-items: center;
+    display: flex;
+    align-self: center;
+}
+
+header>nav:nth-child(2){
+    position: absolute;
+    right: 6%;
+    margin: auto;
+    align-items: center;
+    display: flex;
+    align-self: center;
+}
+
+header>nav:nth-child(2)>div{
+    display: inline-block;
+    color: #0b5ed7;
+}
+
+header>nav:nth-child(2)>div>li{
+    list-style: none;
+    display: inline-block;
+    font-weight: normal;
+}
+
+header>nav:nth-child(2)>div>li>a{
+    font-size: 1.1vw;
+    text-decoration: none;
+    color: white;
+    padding: 5px 20px;
+    background-color: #01a3fc;
+    text-align: center;
+    font-weight: normal;
+    border: none;
+    border-radius: 5px;
+}
+
+header>nav>li{
+    list-style: none;
+    display: inline-block;
+    margin-right: 40px;
+    font-weight: normal;
+}
+
+header>nav>li>a{
+    font-size: 1.1vw;
+    text-decoration: none;
+    color: white;
+}
+
+header>nav>li>a:hover{
+    transition: all;
+    color: #FFF500;
+}
+
+header>nav:first-child>li:first-child>a{
+    font-size: 1.8vw;
+    font-family: Dancing Script, cursive;
+}
+
+/*.....................homeForm.................*/
+
+#homeContent>div{
+    position: relative;
+    height: 100vh;
+}
+
+#homeContent>div:nth-child(2)>div:first-child{
+    height: 100%;
+    position: relative;
+    background-image: url(../images/ShoeShop.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: brightness(30%);
+}
+
+#homeContent>div:nth-child(2)>div:last-child{
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    justify-content: center;
+}
+
+#homeContent>div:nth-child(2)>div:last-child>div{
+    color: #ffffff;
+    align-self: center;
+    text-align: center;
+}
+
+#homeContent>div:nth-child(2)>div:last-child>div>h2{
+    font-family: Josefin Sans, cursive;
+    font-size: 3.5vw;
+}
+
+#homeContent>div:nth-child(2)>div:last-child>div>p{
+    font-family: Josefin Sans, cursive;
+    font-size: 1.5vw;
+}
+
+#homeContent>div:nth-child(2)>div:last-child>div>p>span{
+    font-family: Dancing Script, cursive;
+}
+
+#homeContent>div:nth-child(2)>div:last-child>div>li{
+    list-style: none;
+    display: inline-block;
+    font-weight: normal;
+}
+
+#homeContent>div:nth-child(2)>div:last-child>div>li>a{
+    font-size: 1.1vw;
+    text-decoration: none;
+    color: white;
+    padding: 5px 20px;
+    background-color: #01a3fc;
+    text-align: center;
+    font-weight: normal;
+    border: none;
+    border-radius: 5px;
+}
+
+/*................SignUpPage.................*/
+#signUpForm{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+#signUpForm>div:nth-child(1){
+    width: 50%;
+    height: 100%;
+    /*background: #0b5ed7;*/
+    background-image: url(../../assets/images/signUp.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#signUpForm>div:nth-child(2){
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+}
