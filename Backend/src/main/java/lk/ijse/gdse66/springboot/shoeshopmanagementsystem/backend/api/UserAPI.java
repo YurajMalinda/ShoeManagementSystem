@@ -1,2 +1,2 @@
-package lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.controller;public class UserController {
+package lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.api;public class UserAPI {
 }

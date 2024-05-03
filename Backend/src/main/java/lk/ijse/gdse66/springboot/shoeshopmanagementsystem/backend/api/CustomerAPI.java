@@ -1,4 +1,4 @@
-package lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.controller;
+package lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.api;
 
-public class CustomerController {
+public class CustomerAPI {
 }
