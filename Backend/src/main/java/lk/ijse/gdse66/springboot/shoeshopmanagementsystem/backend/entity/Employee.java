@@ -4,26 +4,29 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.util.Gender;
-import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.util.Level;
-import lombok.*;
+import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.util.Role;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Entity
 @Table
-public class Customer{
+public class Employee {
     @Id
-    private String customerCode;
-    private String customerName;
+    private String employeeCode;
+    private String employeeName;
+    private String employeeProfilePic;
     private Gender gender;
-    private Date joinDate;
-    private Level level;
-    private Integer totalPoints;
-    private Date dOB;
+    private String Status;
+    private String Designation;
+    private Role accessRole;
+    private Date dateOfJoin;
+    private String attachedBranch;
     private String addressLine01;
     private String addressLine02;
     private String addressLine03;
@@ -31,5 +34,6 @@ public class Customer{
     private String addressLine05;
     private String contactNo;
     private String email;
-    private Timestamp recentPurchase;
+    private String emergencyInform;
+    private String emergencyContact;
 }
