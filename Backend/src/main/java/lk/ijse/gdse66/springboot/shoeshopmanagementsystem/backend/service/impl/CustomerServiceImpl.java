@@ -4,17 +4,21 @@ import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.dto.CustomerDT
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.entity.Customer;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.repository.CustomerRepo;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.service.CustomerService;
+import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.service.exception.DuplicateRecordException;
+import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.service.exception.NotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @Transactional
 public class CustomerServiceImpl implements CustomerService {
+    @Autowired
     CustomerRepo customerRepo;
+    @Autowired
     ModelMapper modelMapper;
 
     public CustomerServiceImpl(CustomerRepo customerRepo, ModelMapper modelMapper) {
@@ -28,23 +32,34 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDTO getCustomerDetails(String id) {
-        return null;
+    public CustomerDTO getCustomerDetails(String customerCode) {
+        if (!customerRepo.existsById(customerCode)){
+            throw new NotFoundException("Customer code: " + customerCode + " does not exist!");
+        }
+        return modelMapper.map(customerRepo.findById(customerCode), CustomerDTO.class);
     }
 
     @Override
     public CustomerDTO saveCustomer(CustomerDTO customerDTO) {
-        customerDTO.setCustomerCode(UUID.randomUUID().toString());
+        if(customerRepo.existsById(customerDTO.getCustomerCode())){
+            throw new DuplicateRecordException("This Customer "+customerDTO.getCustomerCode()+" already exists!...");
+        }
         return modelMapper.map(customerRepo.save(modelMapper.map(customerDTO, Customer.class)),CustomerDTO.class);
     }
 
     @Override
     public void updateCustomer(CustomerDTO customerDTO) {
-
+        if (!customerRepo.existsById(customerDTO.getCustomerCode())) {
+            throw new NotFoundException("Update failed: Customer code:- "+ customerDTO.getCustomerCode() + " does not exist!");
+        }
+        customerRepo.save(modelMapper.map(customerDTO, Customer.class));
     }
 
     @Override
-    public void deleteCustomer(String id) {
-
+    public void deleteCustomer(String customerCode) {
+        if (!customerRepo.existsById(customerCode)) {
+            throw new NotFoundException("Delete failed; Customer code:- "+ customerCode + " does not exist!");
+        }
+        customerRepo.deleteById(customerCode);
     }
 }

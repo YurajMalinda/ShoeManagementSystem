@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.api;
 
+import jakarta.validation.Valid;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.dto.CustomerDTO;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.entity.Customer;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.service.CustomerService;
@@ -26,7 +27,7 @@ public class CustomerAPI {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO) {
+    public CustomerDTO saveCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
         return customerService.saveCustomer(customerDTO);
     }
 
@@ -38,7 +39,7 @@ public class CustomerAPI {
     @PatchMapping(value = "/{customerCode}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateCustomer(@PathVariable("customerCode") String customerCode,
-                               @RequestBody CustomerDTO customerDTO){
+                               @Valid @RequestBody CustomerDTO customerDTO){
         customerDTO.setCustomerCode(customerCode);
         customerService.updateCustomer(customerDTO);
     }
