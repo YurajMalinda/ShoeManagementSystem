@@ -7,7 +7,6 @@ import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.service.Custom
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.service.exception.DuplicateRecordException;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.service.exception.NotFoundException;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,9 +15,7 @@ import java.util.List;
 @Service
 @Transactional
 public class CustomerServiceImpl implements CustomerService {
-    @Autowired
     CustomerRepo customerRepo;
-    @Autowired
     ModelMapper modelMapper;
 
     public CustomerServiceImpl(CustomerRepo customerRepo, ModelMapper modelMapper) {

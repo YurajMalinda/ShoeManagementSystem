@@ -2,11 +2,9 @@ package lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.api;
 
 import jakarta.validation.Valid;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.dto.CustomerDTO;
-import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.entity.Customer;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
