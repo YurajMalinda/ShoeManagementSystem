@@ -47,5 +47,4 @@ public class CustomerAPI {
     public void deleteCustomer(@PathVariable("customerCode") String customerCode) {
         customerService.deleteCustomer(customerCode);
     }
-
 }
