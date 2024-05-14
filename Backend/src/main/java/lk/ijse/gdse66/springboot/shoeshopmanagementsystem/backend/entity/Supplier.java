@@ -1,8 +1,6 @@
 package lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.util.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +15,7 @@ public class Supplier {
     @Id
     private String supplierCode;
     private String supplierName;
+    @Enumerated(EnumType.STRING)
     private Category category;
     private String addressLine01;
     private String addressLine02;

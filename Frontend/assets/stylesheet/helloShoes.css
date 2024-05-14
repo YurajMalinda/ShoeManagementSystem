@@ -75,7 +75,7 @@ header>nav>li>a:hover{
 
 header>nav:first-child>li:first-child>a{
     font-size: 1.8vw;
-    font-family: Dancing Script, cursive;
+    font-family: "Dancing Script", cursive;
 }
 
 /*.....................homeForm.................*/
@@ -113,17 +113,19 @@ header>nav:first-child>li:first-child>a{
 }
 
 #homeContent>div:nth-child(2)>div:last-child>div>h2{
-    font-family: Josefin Sans, cursive;
+    font-family: "Josefin Sans", cursive;
     font-size: 3.5vw;
 }
 
 #homeContent>div:nth-child(2)>div:last-child>div>p{
-    font-family: Josefin Sans, cursive;
+    font-family: "Josefin Sans", cursive;
     font-size: 1.5vw;
+    font-weight: 350;
+    font-style: normal;
 }
 
 #homeContent>div:nth-child(2)>div:last-child>div>p>span{
-    font-family: Dancing Script, cursive;
+    font-family: "Dancing Script", cursive;
 }
 
 #homeContent>div:nth-child(2)>div:last-child>div>li{
@@ -159,10 +161,199 @@ header>nav:first-child>li:first-child>a{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    opacity: 0; /* Start with opacity 0 */
+    animation: slideInLeft 1s forwards;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 #signUpForm>div:nth-child(2){
+    position: relative;
     width: 50%;
     height: 100%;
-    display: inline-block;
+    justify-content: center;
+    display: flex;
 }
+
+#signUpForm>div:nth-child(2)>form>h1{
+    margin-bottom: 30px;
+    align-self: center;
+    font-family: "Dancing Script", cursive;
+    font-size: 4vw;
+}
+
+#signUpForm>div:nth-child(2)>form{
+    position: relative;
+    width: 70%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    opacity: 0; /* Start with opacity 0 */
+    animation: slideInRight 1s forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+#signUpForm>div:nth-child(2)>form>div:nth-child(4){
+    width: 40%;
+    align-self: flex-start;
+    margin-bottom: 40px;
+}
+
+#signUpForm>div:nth-child(2)>form>button{
+    width: 100%;
+    align-self: center;
+    margin-bottom: 5px;
+}
+
+#signUpForm>div:nth-child(2)>form>p{
+    align-self: center;
+}
+
+/*----------------------------Log in form----------------------*/
+
+#loginForm > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url(../../assets/images/istockphoto-1865283629-612x612.jpg);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+
+#loginForm > div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity here */
+    opacity: 0; /* Start with opacity 0 */
+    animation: fadeIn 1s forwards; /* Apply fade-in animation */
+}
+
+#loginForm > div > div {
+    position: relative;
+    align-self: center;
+    z-index: 1;
+    width: 30%;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.5); /* Adjust the opacity here */
+    padding: 1.5vw 1.5vw;
+    height: 70%;
+    opacity: 0; /* Start with opacity 0 */
+    animation: slideInRight 1s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+#loginForm > div > div > form {
+    display: flex;
+    flex-direction: column;
+}
+
+#loginForm > div > div > form > h1 {
+    margin-bottom: 30px;
+    align-self: center;
+    font-family: "Dancing Script", cursive;
+    font-size: 4vw;
+}
+
+#loginForm > div > div > form > button {
+    align-self: center;
+    width: 50%;
+    margin-top: 20px;
+}
+
+/*--------------------------Dashboard------------------------*/
+
+#dashboardContent{
+    position: relative;
+    display: flex;
+}
+
+#dashboardContent>div{
+    position: relative;
+    width: 16%;
+    height: 100%;
+    background: #ffe3e5;
+}
+
+#dashboardContent > section {
+    position: relative;
+    width: 84%;
+    height: 100%;
+    /*flex: 1;*/
+    display: flex;
+    flex-direction: column;
+}
+
+#dashboardContent>section>nav{
+    background: #ffe3e5;
+    height: 7%;
+}
+
+#dashboardContent > section > section {
+    flex: 1;
+    position: relative;
+    display: flex;
+}
+
+.mainForm{
+    flex: 1;
+    display: inline-block;
+    border: none;
+}
+
+#dashboardContent>section>section>div:nth-child(1){
+    background: #e12734;
+    display: flex;
+    justify-content: center;
+}
+
+#dashboardContent>section>section>div:nth-child(2){
+    background: #641c21;
+}
+
+
+
+

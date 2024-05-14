@@ -1,8 +1,6 @@
 package lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.util.Gender;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.util.Level;
 import lombok.*;
@@ -19,8 +17,10 @@ public class Customer{
     @Id
     private String customerCode;
     private String customerName;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private Date joinDate;
+    @Enumerated(EnumType.STRING)
     private Level level;
     private Integer totalPoints;
     private Date dOB;

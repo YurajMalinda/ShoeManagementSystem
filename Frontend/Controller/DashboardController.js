@@ -63,7 +63,7 @@ $(document).ready(() => {
 
 function clearAll() {
     // Use 'hidden' attribute for better performance and simplicity
-    $("#homeContent, #signUpForm, #loginForm").attr('hidden', true);
+    $("#homeContent, #signUpForm, #loginForm, #dashboardContent").attr('hidden', true);
 }
 
 function initUI() {
@@ -102,3 +102,15 @@ function saveLastView(id) {
 $("#btnGetStarted, #btnGetStarted1").on('click', () => {
     setView($("#signUpForm"));
 });
+
+$("#linkLogin").on("click", () => {
+    setView($("#loginForm"));
+})
+
+$("#btnLogIn").on("click", () => {
+    setView($("#dashboardContent"));
+})
+
+$("#btnBackTOHome").on("click", () => {
+    setView($("#homeContent"));
+})

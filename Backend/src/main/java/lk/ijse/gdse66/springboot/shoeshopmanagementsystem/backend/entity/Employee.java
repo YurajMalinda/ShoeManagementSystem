@@ -1,9 +1,6 @@
 package lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.util.Gender;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.util.Role;
 import lombok.AllArgsConstructor;
@@ -23,9 +20,11 @@ public class Employee {
     private String employeeName;
     @Column(columnDefinition = "LONGTEXT")
     private String employeeProfilePic;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private String status;
     private String designation;
+    @Enumerated(EnumType.STRING)
     private Role accessRole;
     private Date dateOfJoin;
     private String attachedBranch;

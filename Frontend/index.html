@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="assets/lib/Bootstrap/css/bootstrap.css">
     <title>Hello Shoes</title>
     <link rel="stylesheet" href="assets/stylesheet/helloShoes.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/fonts/Dancing script/stylesheet.css">
+    <link rel="stylesheet" href="assets/fonts/Josefin sans/stylesheet1.css">
 </head>
 <body>
 
@@ -43,17 +42,86 @@
 </section>
 
 <section id="loginForm" class="page">
-
+    <div>
+        <div>
+            <form>
+                <h1>HelloShoes.</h1>
+                <div class="mb-3">
+                    <label for="inputEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="InputPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="InputPassword">
+                </div>
+                <button type="submit" class="btn btn-primary" id="btnLogIn">Log in</button>
+            </form>
+        </div>
+    </div>
 </section>
 
 <section id="signUpForm" class="page">
     <div></div>
     <div>
+        <form>
+            <h1>HelloShoes.</h1>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
 
+            <div class="col-6">
+                <label for="selectFormCustomer">Role</label>
+                <select id="selectFormCustomer" class="form-select">
+                    <option selected>Admin</option>
+                </select>
+            </div>
+            <button id="btnSignUp" type="submit" class="btn btn-primary">Sign up</button>
+            <p>Already have an account?<a href="#loginForm" id="linkLogin">Log in</a></p>
+        </form>
     </div>
 </section>
+
+<section id="dashboardContent" class="page">
+    <div>
+        <button id="btnBackTOHome" class="btn btn-outline-success" type="button">Back</button>
+        <button id="btnHome" class="btn btn-outline-success" type="button">Home</button>
+        <button id="btnCustomer" class="btn btn-outline-success" type="button">Customer</button>
+        <button id="btnEmployee" class="btn btn-outline-success" type="button">Employee</button>
+        <button id="btnInventory" class="btn btn-outline-success" type="button">Inventory</button>
+        <button id="btnPlaceOrder" class="btn btn-outline-success" type="button">Place Order</button>
+        <button id="btnOrderDetails" class="btn btn-outline-success" type="button">Order Details</button>
+        <button id="btnSupplier" class="btn btn-outline-success" type="button">Supplier</button>
+    </div>
+    <section>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <form class="d-flex align-items-center" role="search">
+                    <input class="form-control me-2 align-self-center form-control-sm" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success btn-sm" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+        <section>
+            <div id="adminPanelView" class="mainForm"></div>
+            <div id="customerForm" class="mainForm"></div>
+            <div id="employeeForm" class="mainForm"></div>
+            <div id="inventoryForm" class="mainForm"></div>
+            <div id="placeOrderForm" class="mainForm"></div>
+            <div id="orderDetailsView" class="mainForm"></div>
+            <div id="supplierForm" class="mainForm"></div>
+        </section>
+    </section>
+</section>
+
 </body>
 <script src="assets/lib/Bootstrap/js/bootstrap.js"></script>
 <script src="assets/lib/Jquery/code.jquery.com_jquery-3.7.1.min.js"></script>
 <script src="Controller/DashboardController.js"></script>
+<script src="assets/lib/Bootstrap/js/bootstrap.bundle.js"></script>
+<script src="Controller/FormController.js"></script>
 </html>

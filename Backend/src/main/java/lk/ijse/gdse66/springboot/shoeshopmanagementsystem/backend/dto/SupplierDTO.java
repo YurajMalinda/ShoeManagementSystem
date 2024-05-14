@@ -36,5 +36,6 @@ public class SupplierDTO implements Serializable {
     private String contactNo1;
     @Pattern(regexp = "^\\d{10}$", message = "Landline number can not be more or lower than 10 digits!")
     private String contactNo2;
+    @NotBlank(message = "Origin country can not be null!")
     private String email;
 }
