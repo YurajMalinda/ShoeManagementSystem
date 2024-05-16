@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/stylesheet/helloShoes.css">
     <link rel="stylesheet" href="assets/fonts/Dancing script/stylesheet.css">
     <link rel="stylesheet" href="assets/fonts/Josefin sans/stylesheet1.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -88,14 +89,41 @@
 
 <section id="dashboardContent" class="page">
     <div>
-        <button id="btnBackTOHome" class="btn btn-outline-success" type="button">Back</button>
-        <button id="btnHome" class="btn btn-outline-success" type="button">Home</button>
-        <button id="btnCustomer" class="btn btn-outline-success" type="button">Customer</button>
-        <button id="btnEmployee" class="btn btn-outline-success" type="button">Employee</button>
-        <button id="btnInventory" class="btn btn-outline-success" type="button">Inventory</button>
-        <button id="btnPlaceOrder" class="btn btn-outline-success" type="button">Place Order</button>
-        <button id="btnOrderDetails" class="btn btn-outline-success" type="button">Order Details</button>
-        <button id="btnSupplier" class="btn btn-outline-success" type="button">Supplier</button>
+        <div>
+            <svg id="btnBackTOHome" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            <img src="assets/images/icons/shoes.png" height="64" width="64"/>
+            <h3>HelloShoes.</h3>
+        </div>
+        <div>
+            <button id="btnHome" class="btn" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 488V171.3c0-26.2 15.9-49.7 40.2-59.4L308.1 4.8c7.6-3.1 16.1-3.1 23.8 0L599.8 111.9c24.3 9.7 40.2 33.3 40.2 59.4V488c0 13.3-10.7 24-24 24H568c-13.3 0-24-10.7-24-24V224c0-17.7-14.3-32-32-32H128c-17.7 0-32 14.3-32 32V488c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24zm488 24l-336 0c-13.3 0-24-10.7-24-24V432H512l0 56c0 13.3-10.7 24-24 24zM128 400V336H512v64H128zm0-96V224H512l0 80H128z"/></svg>
+                <p>Home</p>
+            </button>
+            <button id="btnCustomer" class="btn" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z"/></svg>
+                <p>Customer</p>
+            </button>
+            <button id="btnEmployee" class="btn" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M96 128a128 128 0 1 0 256 0A128 128 0 1 0 96 128zm94.5 200.2l18.6 31L175.8 483.1l-36-146.9c-2-8.1-9.8-13.4-17.9-11.3C51.9 342.4 0 405.8 0 481.3c0 17 13.8 30.7 30.7 30.7H162.5c0 0 0 0 .1 0H168 280h5.5c0 0 0 0 .1 0H417.3c17 0 30.7-13.8 30.7-30.7c0-75.5-51.9-138.9-121.9-156.4c-8.1-2-15.9 3.3-17.9 11.3l-36 146.9L238.9 359.2l18.6-31c6.4-10.7-1.3-24.2-13.7-24.2H224 204.3c-12.4 0-20.1 13.6-13.7 24.2z"/></svg>
+                <p>Employee</p>
+            </button>
+            <button id="btnInventory" class="btn" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 488V171.3c0-26.2 15.9-49.7 40.2-59.4L308.1 4.8c7.6-3.1 16.1-3.1 23.8 0L599.8 111.9c24.3 9.7 40.2 33.3 40.2 59.4V488c0 13.3-10.7 24-24 24H568c-13.3 0-24-10.7-24-24V224c0-17.7-14.3-32-32-32H128c-17.7 0-32 14.3-32 32V488c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24zm488 24l-336 0c-13.3 0-24-10.7-24-24V432H512l0 56c0 13.3-10.7 24-24 24zM128 400V336H512v64H128zm0-96V224H512l0 80H128z"/></svg>
+                <p>Inventory</p>
+            </button>
+            <button id="btnPlaceOrder" class="btn" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64v48H160V112zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/></svg>
+                <p>Place Order</p>
+            </button>
+            <button id="btnOrderDetails" class="btn" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 32C0 14.3 14.3 0 32 0H48c44.2 0 80 35.8 80 80V368c0 8.8 7.2 16 16 16H608c17.7 0 32 14.3 32 32s-14.3 32-32 32H541.3c1.8 5 2.7 10.4 2.7 16c0 26.5-21.5 48-48 48s-48-21.5-48-48c0-5.6 1-11 2.7-16H253.3c1.8 5 2.7 10.4 2.7 16c0 26.5-21.5 48-48 48s-48-21.5-48-48c0-5.6 1-11 2.7-16H144c-44.2 0-80-35.8-80-80V80c0-8.8-7.2-16-16-16H32C14.3 64 0 49.7 0 32zM432 96V56c0-4.4-3.6-8-8-8H344c-4.4 0-8 3.6-8 8V96h96zM288 96V56c0-30.9 25.1-56 56-56h80c30.9 0 56 25.1 56 56V96 320H288V96zM512 320V96h16c26.5 0 48 21.5 48 48V272c0 26.5-21.5 48-48 48H512zM240 96h16V320H240c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg>
+                <p>Order Details</p>
+            </button>
+            <button id="btnSupplier" class="btn" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M32 96c0-35.3 28.7-64 64-64H320c23.7 0 44.4 12.9 55.4 32h51.8c25.3 0 48.2 14.9 58.5 38l52.8 118.8c.5 1.1 .9 2.1 1.3 3.2H544c35.3 0 64 28.7 64 64v32c17.7 0 32 14.3 32 32s-14.3 32-32 32H576c0 53-43 96-96 96s-96-43-96-96H256c0 53-43 96-96 96s-96-43-96-96H32c-17.7 0-32-14.3-32-32s14.3-32 32-32V288c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32V96zM384 224h85.9l-42.7-96H384v96zM160 432a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm368-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z"/></svg>
+                <p>Supplier</p>
+            </button>
+        </div>
     </div>
     <section>
         <nav class="navbar">
@@ -107,8 +135,88 @@
             </div>
         </nav>
         <section>
-            <div id="adminPanelView" class="mainForm"></div>
-            <div id="customerForm" class="mainForm"></div>
+            <div id="adminPanelView" class="mainForm">
+                <div>
+                    <div>
+                        <span>Today's sales</span>
+                        <span>$27 000</span>
+                    </div>
+                    <div>
+                        <span>Total sales</span>
+                        <span>$27 000</span>
+                    </div>
+                    <div>
+                        <span>Profit</span>
+                        <span>$8000</span>
+                    </div>
+                    <div>
+                        <span>Most sale item</span>
+                        <span>Nike</span>
+                    </div>
+                    <div>
+                        <span>Customers</span>
+                        <span>5</span>
+                    </div>
+                    <div>
+                        <span>Total items</span>
+                        <span>100</span>
+                    </div>
+                </div>
+                <div class="row m-4 d-flex justify-content-between">
+                    <div class="col-5 p-0">
+                        <div class="card mb-3">
+                            <img src="assets/images/mostSoldShoe.jpg" class="card-img-top" alt="...">
+                            <div class="card-body d-flex flex-column" style="color: #838383; padding: 0; background: #ffe3e5;">
+                                <h5 class="col-12 card-title text-center" style="background: #ffccd0; padding-bottom: 0.3em; padding-top: 0.3em;">Most Sale Item</h5>
+                                <div class="d-flex" style="font-size: 0.9em;">
+                                    <p class="col card-text m-0 d-inline-block">FSM00001</p>
+                                    <p class="col card-text m-0 d-inline-block">Normal Shoe</p>
+                                    <p class="col card-text m-0 d-inline-block">Size - <span>10</span></p>
+                                    <p class="col card-text m-0 d-inline-block">Rs.3500.00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 p-0 d-flex">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                            <thead class="table-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <div id="customerForm" class="mainForm">
+
+            </div>
             <div id="employeeForm" class="mainForm"></div>
             <div id="inventoryForm" class="mainForm"></div>
             <div id="placeOrderForm" class="mainForm"></div>
@@ -124,4 +232,6 @@
 <script src="Controller/DashboardController.js"></script>
 <script src="assets/lib/Bootstrap/js/bootstrap.bundle.js"></script>
 <script src="Controller/FormController.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="Controller/HomeController.js"></script>
 </html>

@@ -82,7 +82,7 @@ header>nav:first-child>li:first-child>a{
 
 #homeContent>div{
     position: relative;
-    height: 100vh;
+    height: 90vh;
 }
 
 #homeContent>div:nth-child(2)>div:first-child{
@@ -318,6 +318,71 @@ header>nav:first-child>li:first-child>a{
     background: #ffe3e5;
 }
 
+#dashboardContent>div>div:nth-child(1){
+    margin-top: 2%;
+    margin-bottom: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+#dashboardContent>div>div:nth-child(1)>svg{
+    width: 6%;
+    position: absolute;
+    top: 2.6%;
+    left: 3%
+}
+
+#dashboardContent>div>div:nth-child(1)>img{
+    width: 20%;
+    height: 15%;
+}
+
+#dashboardContent>div>div:nth-child(1)>h3{
+    align-self: center;
+    margin: 0;
+    margin-left: 3%;
+    font-family: "Dancing Script", cursive;
+    font-size: 1.8vw;
+    color: #7e7e7e;
+}
+
+#dashboardContent>div>div:last-child{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 60%;
+    align-items: center;
+}
+
+#dashboardContent>div>div:last-child>button{
+    display: flex;
+    align-items: center;
+    width: 70%;
+    color: #868686;
+    font-family: "Josefin Sans", cursive;
+    font-size: 1vw;
+}
+
+#dashboardContent>div>div:last-child>button:hover{
+    background: white;
+    color: #fca5a9;
+}
+
+#dashboardContent>div>div:last-child>button>svg{
+    width: 10%;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+#dashboardContent>div>div:last-child>button>svg:hover{
+    color: #fca5a9;
+}
+
+#dashboardContent>div>div:last-child>button>p{
+    margin: 0;
+    margin-top: 2%;
+}
+
 #dashboardContent > section {
     position: relative;
     width: 84%;
@@ -336,24 +401,91 @@ header>nav:first-child>li:first-child>a{
     flex: 1;
     position: relative;
     display: flex;
+    overflow-y: scroll;
 }
 
 .mainForm{
+    padding: 1em;
+    position: relative;
     flex: 1;
     display: inline-block;
     border: none;
 }
 
-#dashboardContent>section>section>div:nth-child(1){
-    background: #e12734;
-    display: flex;
-    justify-content: center;
+/*--------adminPanelView----------*/
+
+#dashboardContent>section>section>div:nth-child(1)>div:first-child{
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: relative;
+    width: 96%;
+    height: 15%;
+    /* grid-row-gap: 12%; */
+    grid-template-rows: repeat(1, 1fr);
+    /* justify-content: space-evenly; */
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-column-gap: 2%;
 }
+
+#dashboardContent>section>section>div:nth-child(1)>div:first-child>div{
+    position: relative;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: #9b9b9b;
+    font-family: 'Josefin Sans', cursive;
+    height: 100%;
+    width: 100%;
+    background: #ffe3e5;
+    padding: 5.8%;
+    border-radius: 0.3em;
+}
+
+#dashboardContent>section>section>div:nth-child(1)>div:first-child>div>span:first-child{
+    font-weight: 400;
+    font-size: 0.9vw;
+}
+
+#dashboardContent>section>section>div:nth-child(1)>div:first-child>div>span:last-child{
+    font-weight: 600;
+    font-size: 2vw;
+}
+
+#dashboardContent>section>section>div:nth-child(1)>div:nth-child(2)>div:first-child{
+    font-family: "Josefin Sans", cursive;
+}
+
+#salesChart{
+    background: #ffe3e5;
+    padding: 0.8em;
+    border-radius: 0.3em;
+}
+
+/*----------------customerForm---------------------------------*/
 
 #dashboardContent>section>section>div:nth-child(2){
-    background: #641c21;
 }
 
+#dashboardContent>section>section>div:nth-child(3){
+    background: #ee717a;
+}
 
+#dashboardContent>section>section>div:nth-child(4){
+    background: #210305;
+}
 
+#dashboardContent>section>section>div:nth-child(5){
+    background: #887475;
+}
+
+#dashboardContent>section>section>div:nth-child(6){
+    background: #1a2d7a;
+}
+
+#dashboardContent>section>section>div:nth-child(7){
+    background: #557383;
+}
 

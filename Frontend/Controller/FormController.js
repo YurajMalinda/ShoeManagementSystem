@@ -38,10 +38,19 @@ $("#btnPlaceOrder").on('click', () => {
 });
 
 $("#btnOrderDetails").on('click', () => {
-    setViewForm($("#orderDetailsForm"));
+    setViewForm($("#orderDetailsView"));
 });
 
 $("#btnSupplier").on('click', () => {
     setViewForm($("#supplierForm"));
+});
+
+
+// ----------------------Current date function--------------
+document.addEventListener('DOMContentLoaded', function() {
+    const currentDateElement = document.getElementById('current-date');
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const today = new Date().toLocaleDateString(undefined, options);
+    currentDateElement.textContent = today;
 });
 
