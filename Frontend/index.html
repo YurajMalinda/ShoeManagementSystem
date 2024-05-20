@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="assets/fonts/Dancing script/stylesheet.css">
     <link rel="stylesheet" href="assets/fonts/Josefin sans/stylesheet1.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -125,7 +126,7 @@
             </button>
         </div>
     </div>
-    <section>
+    <section style="background: #f9fdff;">
         <nav class="navbar">
             <div class="container-fluid">
                 <form class="d-flex align-items-center" role="search">
@@ -134,7 +135,7 @@
                 </form>
             </div>
         </nav>
-        <section>
+        <section >
             <div id="adminPanelView" class="mainForm">
                 <div>
                     <div>
@@ -214,10 +215,270 @@
 
                 </div>
             </div>
-            <div id="customerForm" class="mainForm">
-
+            <div id="customerForm" class="mainForm container-fluid">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12">
+                        <div class="card h-100" style="font-family: Josefin Sans, cursive">
+                            <div class="card-header">
+                                Customer
+                            </div>
+                            <div class="card-body px-3 py-2" style="background: #fffbfc;">
+                                <div class="row g-2">
+                                    <div class="col-6 col-sm-4">
+                                        <label for="customerCode" class="form-label">Customer Code:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Customer Code" id="customerCode">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="customerName" class="form-label">Customer Name:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Customer Name" id="customerName">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label class="form-label">Gender:</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="radioMale" value="MALE">
+                                            <label class="form-check-label" for="radioMale">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="radioFemale" value="FEMALE">
+                                            <label class="form-check-label" for="radioFemale">Female</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="joinDate" class="form-label">Join Date:</label>
+                                        <input type="date" class="form-control form-control-sm" id="joinDate">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label class="form-label">Level:</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="level" id="radioGold" value="GOLD">
+                                            <label class="form-check-label" for="radioGold">Gold</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="level" id="radioSilver" value="SILVER">
+                                            <label class="form-check-label" for="radioSilver">Silver</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="level" id="radioBronze" value="BRONZE">
+                                            <label class="form-check-label" for="radioBronze">Bronze</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="level" id="radioNew" value="NEW">
+                                            <label class="form-check-label" for="radioNew">New</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="totalPoints" class="form-label">Total points:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Total points" id="totalPoints">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="dob" class="form-label">DOB:</label>
+                                        <input type="date" class="form-control form-control-sm" id="dob">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine1" class="form-label">Address line 01:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Building no or name" id="addressLine1">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine2" class="form-label">Address line 02:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Lane" id="addressLine2">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine3" class="form-label">Address line 03:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Main city" id="addressLine3">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine4" class="form-label">Address line 04:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Main state" id="addressLine4">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine5" class="form-label">Address line 05:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Postal code" id="addressLine5">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="contactNo" class="form-label">Contact:</label>
+                                        <input type="number" class="form-control form-control-sm" placeholder="Contact No" id="contactNo">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="email" class="form-label">Email:</label>
+                                        <input type="email" class="form-control form-control-sm" placeholder="Email" id="email">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="recentPurchase" class="form-label">Recent purchase data:</label>
+                                        <input type="datetime-local" class="form-control form-control-sm" id="recentPurchase">
+                                    </div>
+                                </div>
+                                <div class="col-12 btn-group mt-3 d-flex justify-content-end">
+                                    <button id="btnSaveCustomer" type="button" class="col-1 btn btn-outline-success btn-sm">Save</button>
+                                    <button id="btnUpdateCustomer" class="col-1 btn btn-outline-primary btn-sm ms-1" type="button">Update</button>
+                                    <button id="btnDeleteCustomer" class="col-1 btn btn-outline-danger btn-sm ms-1" type="button">Delete</button>
+                                    <button id="btnClearCustomer" class="col-1 btn btn-outline-secondary btn-sm ms-1" type="button">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 d-flex justify-content-end mb-2" style="margin: 0;">
+                        <input type="text" placeholder="Search" class="col-sm-2 form-control form-control-sm" id="txtSearch">
+                        <button id="btnSearchCustomer" type="button" class="col-1 btn btn-outline-success btn-sm ms-1 me-3">Search</button>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-sm p-0">
+                            <div class="table-responsive" style="overflow-y: auto;">
+                                <table class="table table-sm table-bordered table-hover shadow-sm" style="font-family: Josefin Sans, cursive; font-size: 0.9em;">
+                                    <thead>
+                                    <tr>
+                                        <th style="background-color: #f6f6f6;" scope="col">Customer code</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Customer name</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Gender</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Join date</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">level</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Total points</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">DOB</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Address</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Contact no</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Email</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Recent purchase data</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tblCustomer">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="employeeForm" class="mainForm"></div>
+            <div id="employeeForm" class="mainForm container-fluid">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12">
+                        <div class="card h-100" style="font-family: Josefin Sans, cursive">
+                            <div class="card-header">
+                                Employee
+                            </div>
+                            <div class="card-body px-3 py-2" style="background: #fffbfc;">
+                                <div class="row g-2">
+                                    <div class="col-6 col-sm-4">
+                                        <label for="employeeCode" class="form-label">Employee Code:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Employee Code" id="employeeCode">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="employeeName" class="form-label">Employee Name:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Employee Name" id="employeeName">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label class="form-label">Gender:</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="radioMale" value="MALE">
+                                            <label class="form-check-label" for="radioMale">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="radioFemale" value="FEMALE">
+                                            <label class="form-check-label" for="radioFemale">Female</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="joinDate" class="form-label">Join Date:</label>
+                                        <input type="date" class="form-control form-control-sm" id="joinDate">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label class="form-label">Level:</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="level" id="radioGold" value="GOLD">
+                                            <label class="form-check-label" for="radioGold">Gold</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="level" id="radioSilver" value="SILVER">
+                                            <label class="form-check-label" for="radioSilver">Silver</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="level" id="radioBronze" value="BRONZE">
+                                            <label class="form-check-label" for="radioBronze">Bronze</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="level" id="radioNew" value="NEW">
+                                            <label class="form-check-label" for="radioNew">New</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="totalPoints" class="form-label">Total points:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Total points" id="totalPoints">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="dob" class="form-label">DOB:</label>
+                                        <input type="date" class="form-control form-control-sm" id="dob">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine1" class="form-label">Address line 01:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Building no or name" id="addressLine1">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine2" class="form-label">Address line 02:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Lane" id="addressLine2">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine3" class="form-label">Address line 03:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Main city" id="addressLine3">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine4" class="form-label">Address line 04:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Main state" id="addressLine4">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine5" class="form-label">Address line 05:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Postal code" id="addressLine5">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="contactNo" class="form-label">Contact:</label>
+                                        <input type="number" class="form-control form-control-sm" placeholder="Contact No" id="contactNo">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="email" class="form-label">Email:</label>
+                                        <input type="email" class="form-control form-control-sm" placeholder="Email" id="email">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="recentPurchase" class="form-label">Recent purchase data:</label>
+                                        <input type="datetime-local" class="form-control form-control-sm" id="recentPurchase">
+                                    </div>
+                                </div>
+                                <div class="col-12 btn-group mt-3 d-flex justify-content-end">
+                                    <button id="btnSaveCustomer" type="button" class="col-1 btn btn-outline-success btn-sm">Save</button>
+                                    <button id="btnUpdateCustomer" class="col-1 btn btn-outline-primary btn-sm ms-1" type="button">Update</button>
+                                    <button id="btnDeleteCustomer" class="col-1 btn btn-outline-danger btn-sm ms-1" type="button">Delete</button>
+                                    <button id="btnClearCustomer" class="col-1 btn btn-outline-secondary btn-sm ms-1" type="button">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 d-flex justify-content-end mb-2" style="margin: 0;">
+                        <input type="text" placeholder="Search" class="col-sm-2 form-control form-control-sm" id="txtSearch">
+                        <button id="btnSearchCustomer" type="button" class="col-1 btn btn-outline-success btn-sm ms-1 me-3">Search</button>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-sm p-0">
+                            <div class="table-responsive" style="overflow-y: auto;">
+                                <table class="table table-sm table-bordered table-hover shadow-sm" style="font-family: Josefin Sans, cursive; font-size: 0.9em;">
+                                    <thead>
+                                    <tr>
+                                        <th style="background-color: #f6f6f6;" scope="col">Customer code</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Customer name</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Gender</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Join date</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">level</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Total points</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">DOB</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Address</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Contact no</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Email</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Recent purchase data</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tblCustomer">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="inventoryForm" class="mainForm"></div>
             <div id="placeOrderForm" class="mainForm"></div>
             <div id="orderDetailsView" class="mainForm"></div>
@@ -234,4 +495,6 @@
 <script src="Controller/FormController.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="Controller/HomeController.js"></script>
+<script src="Controller/CustomerController.js"></script>
+<script src="Controller/validation/CustomerValidation.js"></script>
 </html>

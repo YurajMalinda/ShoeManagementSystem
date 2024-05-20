@@ -8,7 +8,7 @@ function clearAllFields() {
 function initialUI() {
     clearAllFields();
     // Use 'hidden' attribute for better performance and simplicity
-    $("#adminPanelView").removeAttr('hidden');
+    $("#customerForm").removeAttr('hidden');
 }
 
 function setViewForm(viewObject) {
@@ -47,10 +47,10 @@ $("#btnSupplier").on('click', () => {
 
 
 // ----------------------Current date function--------------
-document.addEventListener('DOMContentLoaded', function() {
-    const currentDateElement = document.getElementById('current-date');
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const today = new Date().toLocaleDateString(undefined, options);
-    currentDateElement.textContent = today;
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     const currentDateElement = document.getElementById('current-date');
+//     const options = { year: 'numeric', month: 'long', day: 'numeric' };
+//     const today = new Date().toLocaleDateString(undefined, options);
+//     currentDateElement.textContent = today;
+// });
 
