@@ -10,7 +10,6 @@ const MOBILE_NO_REGEX = /^\d{10}$/;
 let cus_vArray = new Array();
 cus_vArray.push({field: $("#customerCode"), regex: CUS_CODE_REGEX});
 cus_vArray.push({field: $("#customerName"), regex: CUS_NAME_REGEX});
-cus_vArray.push({field: $("#totalPoints"), regex: TOTAL_POINT_REGEX});
 cus_vArray.push({field: $("#addressLine1"), regex: ADDRESS_REGEX});
 cus_vArray.push({field: $("#addressLine2"), regex: ADDRESS_REGEX});
 cus_vArray.push({field: $("#addressLine3"), regex: ADDRESS_REGEX});
@@ -30,7 +29,7 @@ function clearCustomerInputFields(){
 
 setBtnGroupCustomer();
 
-$("#customerCode, #customerName, #totalPoints, #addressLine1, #addressLine2, #addressLine3, #addressLine4, #addressLine5, #contactNo, #email").on("keydown keyup", function (e){
+$("#customerCode, #customerName, #addressLine1, #addressLine2, #addressLine3, #addressLine4, #addressLine5, #contactNo, #email").on("keydown keyup", function (e){
     let indexNo = cus_vArray.indexOf(cus_vArray.find((c) => c.field.attr("id") == e.target.id));
 
     if (e.key == "Tab") {

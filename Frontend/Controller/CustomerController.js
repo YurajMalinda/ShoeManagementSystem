@@ -53,12 +53,11 @@ function searchCustomer(customerId) {
 
 // --------------Save btn event---------------------------
 $("#btnSaveCustomer").click(function (){
-    saveCustomer();
-    // if (checkAllCustomer()){
-    //     saveCustomer();
-    // }else {
-    //     alert("Something went wrong!");
-    // }
+    if (checkAllCustomer()){
+        saveCustomer();
+    }else {
+        alert("Something went wrong!");
+    }
 });
 
 // --------------Save Customer function---------------------------

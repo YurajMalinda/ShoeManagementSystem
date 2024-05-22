@@ -26,6 +26,7 @@ public class Employee {
     private String designation;
     @Enumerated(EnumType.STRING)
     private Role accessRole;
+    private Date dOb;
     private Date dateOfJoin;
     private String attachedBranch;
     private String addressLine01;

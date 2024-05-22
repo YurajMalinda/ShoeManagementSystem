@@ -410,6 +410,7 @@ header>nav:first-child>li:first-child>a{
     flex: 1;
     display: inline-block;
     border: none;
+    height: fit-content;
 }
 
 /*--------adminPanelView----------*/
@@ -469,8 +470,45 @@ header>nav:first-child>li:first-child>a{
 #dashboardContent>section>section>div:nth-child(2){
 }
 
+/*----------------Employee form--------------------*/
+
+#plusIconContainer {
+    background: url("../../assets/images/Profile_pic.jpg");
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#innerBox{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    opacity: 0;
+    background: black;
+    cursor: pointer;
+}
+
+#plusIconContainer:hover #innerBox{
+    transition: 0.1s all;
+    opacity: 0.4;
+}
+
+#plusIcon {
+    align-self: center;
+    z-index: 1;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#plusIconContainer:hover #plusIcon{
+    transition: 0.5s all;
+    opacity: 0.5;
+}
+
 #dashboardContent>section>section>div:nth-child(3){
-    background: #ee717a;
 }
 
 #dashboardContent>section>section>div:nth-child(4){

@@ -29,6 +29,7 @@ public class EmployeeDTO implements Serializable {
     @NotBlank(message = "designation can not be null!")
     private String designation;
     private Role accessRole;
+    private Date dOb;
     private Date dateOfJoin;
     @NotBlank(message = "status can not be null!")
     private String attachedBranch;

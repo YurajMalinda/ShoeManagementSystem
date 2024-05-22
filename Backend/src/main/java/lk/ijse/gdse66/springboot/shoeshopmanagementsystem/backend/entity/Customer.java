@@ -23,7 +23,7 @@ public class Customer{
     @Enumerated(EnumType.STRING)
     private Level level;
     private Integer totalPoints;
-    private Date dOB;
+    private Date dOb;
     private String addressLine01;
     private String addressLine02;
     private String addressLine03;
