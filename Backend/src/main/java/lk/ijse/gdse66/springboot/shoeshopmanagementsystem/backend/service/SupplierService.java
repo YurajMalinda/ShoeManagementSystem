@@ -10,4 +10,7 @@ public interface SupplierService {
     SupplierDTO saveSupplier(SupplierDTO supplierDTO);
     void updateSupplier(SupplierDTO supplierDTO);
     void deleteSupplier(String supplierCode);
+    List<SupplierDTO> searchSupplierByName(String supplierName);
+    SupplierDTO searchSupplierById(String supplierCode);
+    String generateNextId();
 }

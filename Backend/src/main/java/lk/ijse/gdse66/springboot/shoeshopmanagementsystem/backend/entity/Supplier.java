@@ -23,7 +23,7 @@ public class Supplier {
     private String addressLine04;
     private String addressLine05;
     private String addressLine06;
-    private String contactNo1;
-    private String contactNo2;
+    private String mobileContactNo;
+    private String landlineContactNo;
     private String email;
 }

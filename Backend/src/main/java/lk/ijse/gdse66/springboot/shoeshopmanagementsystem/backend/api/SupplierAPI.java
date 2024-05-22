@@ -47,4 +47,19 @@ public class SupplierAPI {
     public void deleteCustomer(@PathVariable("supplierCode") String supplierCode) {
         supplierService.deleteSupplier(supplierCode);
     }
+
+    @GetMapping("/searchByName")
+    public List<SupplierDTO> searchByName(@PathVariable("supplierName") String supplierName){
+        return supplierService.searchSupplier(supplierName);
+    }
+
+    @GetMapping("/searchById")
+    public SupplierDTO searchByID(@PathVariable("supplierCode") String supplierCode){
+        return supplierService.searchSupplierById(supplierCode);
+    }
+
+    @GetMapping("/nextId")
+    public String nextId(){
+        return supplierService.generateNextId();
+    }
 }

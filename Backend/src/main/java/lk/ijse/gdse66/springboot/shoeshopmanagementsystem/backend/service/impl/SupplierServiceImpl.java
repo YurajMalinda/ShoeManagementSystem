@@ -60,4 +60,44 @@ public class SupplierServiceImpl implements SupplierService {
         }
         supplierRepo.deleteById(supplierCode);
     }
+
+    @Override
+    public List<SupplierDTO> searchSupplierByName(String supplierName) {
+        List<SupplierDTO> list = supplierRepo.findByName(supplierName).stream().map(supplier -> modelMapper.map(supplier, SupplierDTO.class)).toList();
+        return list;
+    }
+
+    @Override
+    public SupplierDTO searchSupplierById(String supplierCode) {
+        if (!supplierRepo.existsById(supplierCode)){
+            throw new NotFoundException("Supplier Id does not exists!");
+        }
+//        return customerRepo.findById(id).map(customer -> mapper.map(customer, CustomerDTO.class)).get();
+        Supplier supplier = supplierRepo.findByCode(supplierCode);
+        return modelMapper.map(supplier,SupplierDTO.class);
+    }
+
+    @Override
+    public String generateNextId() {
+        String prefix = "S";
+        String id = "";
+
+        Supplier lastSupplier = supplierRepo.findTopOrderByCodeDesc();
+        int nextNumericPart;
+        if (lastSupplier != null) {
+            String lastCode = lastSupplier.getSupplierCode();
+            String numericPartString = lastCode.substring(prefix.length());
+            try {
+                int numericPart = Integer.parseInt(numericPartString);
+                nextNumericPart = numericPart + 1;
+            } catch (NumberFormatException e) {
+                nextNumericPart = 1;
+            }
+        } else {
+            nextNumericPart = 1;
+        }
+        id = prefix + String.format("%04d", nextNumericPart);
+
+        return id;
+    }
 }
