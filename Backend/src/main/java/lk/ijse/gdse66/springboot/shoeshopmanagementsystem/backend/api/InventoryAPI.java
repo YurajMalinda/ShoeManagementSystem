@@ -2,6 +2,7 @@ package lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.api;
 
 import jakarta.validation.Valid;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.dto.InventoryDTO;
+import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.dto.SupplierDTO;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.service.InventoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -46,5 +47,37 @@ public class InventoryAPI {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCustomer(@PathVariable("itemCode") String itemCode) {
         inventoryService.deleteInventory(itemCode);
+    }
+
+    @GetMapping("/searchByName")
+    public List<InventoryDTO> searchByName(@PathVariable("itemName") String itemName){
+        return inventoryService.searchItemByName(itemName);
+    }
+
+    @GetMapping("/searchById")
+    public InventoryDTO searchById(@PathVariable("itemCode") String itemCode){
+        return inventoryService.searchItemById(itemCode);
+    }
+
+    @GetMapping("/loadSuppliersCode")
+    public List<SupplierDTO> loadSuppliersCode(){
+        return inventoryService.loadSupplierCode();
+    }
+
+    @GetMapping("/getAllItemsByPrice/{minPrice}/{maxPrice}")
+    public List<InventoryDTO> getAllItemsByPrice(@PathVariable double minPrice,@PathVariable double maxPrice){
+        return inventoryService.getAllItemsByPrice(minPrice, maxPrice);
+    }
+
+    @GetMapping("/getAllItemsByCategoryGender")
+    public List<InventoryDTO> getAllItemsByGender(@PathVariable("gender") String gender){
+        System.out.println("gender = "+gender);
+        return inventoryService.getAllItemsByGender(gender);
+    }
+
+    @GetMapping("/getAllItemsByCategoryOccasion")
+    public List<InventoryDTO> getAllItemsByOccasion(@PathVariable("occasion") String occasion){
+        System.out.println("occasion = "+occasion);
+        return inventoryService.getAllItemsByGender(occasion);
     }
 }

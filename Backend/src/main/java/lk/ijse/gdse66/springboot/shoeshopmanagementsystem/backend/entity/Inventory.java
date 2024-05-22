@@ -1,14 +1,14 @@
 package lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +22,13 @@ public class Inventory {
     @Column(columnDefinition = "LONGTEXT")
     private String itemPicture;
     private String category;
-    private Integer size;
+    private Integer size_5;
+    private Integer size_6;
+    private Integer size_7;
+    private Integer size_8;
+    private Integer size_9;
+    private Integer size_10;
+    private Integer size_11;
     private String supplierCode;
     private String supplierName;
     private Double unitPrice_sale;
@@ -30,4 +36,7 @@ public class Inventory {
     private Double expectedProfit;
     private Double profitMargin;
     private String status;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "itemCode")
+    private List<SaleDetail> saleDetails = new ArrayList<>();
 }

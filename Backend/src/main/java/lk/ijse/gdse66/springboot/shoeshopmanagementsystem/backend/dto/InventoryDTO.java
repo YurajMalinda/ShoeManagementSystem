@@ -15,7 +15,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Builder
 public class InventoryDTO implements Serializable {
-    @Pattern(regexp = "^I00-\\d{3}$", message = "Item code is not valid!")
+//    @Pattern(regexp = "^FSM-\\d{3}$", message = "Item code is not valid!")
     private String itemCode;
     @NotBlank(message = "Item description can not be null!")
     private String itemDesc;
@@ -23,7 +23,13 @@ public class InventoryDTO implements Serializable {
     @NotBlank(message = "Category can not be null!")
     private String category;
     @NotBlank(message = "Size can not be null!")
-    private Integer size;
+    private Integer size_5;
+    private Integer size_6;
+    private Integer size_7;
+    private Integer size_8;
+    private Integer size_9;
+    private Integer size_10;
+    private Integer size_11;
     private String supplierCode;
     private String supplierName;
     @NotBlank(message = "Sale price can not be null!")
