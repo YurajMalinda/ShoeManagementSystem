@@ -8,7 +8,7 @@ function clearAllFields() {
 function initialUI() {
     clearAllFields();
     // Use 'hidden' attribute for better performance and simplicity
-    $("#employeeForm").removeAttr('hidden');
+    $("#inventoryForm").removeAttr('hidden');
 }
 
 function setViewForm(viewObject) {

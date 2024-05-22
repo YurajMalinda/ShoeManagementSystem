@@ -514,6 +514,7 @@ $('#employeeProPic').on('change', function(event) {
         };
 
         reader.readAsDataURL(file);
+        $("#btnUpdateEmployee").prop("disabled", false);
     }
     $("#plusIconContainer").empty();
 });

@@ -29,7 +29,7 @@ function clearEmployeeInputFields(){
     $("#employeeCode, #employeeName, #status, #designation, #dobOfEmployee, #joinedDate, #attachedBranch, #addressLine1Employee, #addressLine2Employee, #addressLine3Employee, #addressLine4Employee, #addressLine5Employee, #employeeContactNo, #employeeEmail, #emergencyInformName, #emergencyInformContact").css("border", "1px solid #ced4da");
     $("#plusIconContainer").empty();
     $("#employeeCode").focus();
-    setBtnGroupCustomer();
+    setBtnGroupEmployee();
 }
 
 setBtnGroupEmployee();
@@ -93,13 +93,13 @@ function checkAllEmployee(){
 }
 
 function setBtnGroupEmployee() {
-    $("#btnDeleteCustomer").prop("disabled", true);
-    $("#btnUpdateCustomer").prop("disabled", true);
+    $("#btnDeleteEmployee").prop("disabled", true);
+    $("#btnUpdateEmployee").prop("disabled", true);
 
     if (checkAllEmployee()){
-        $("#btnSaveCustomer").prop("disabled", false);
+        $("#btnSaveEmployee").prop("disabled", false);
     }else{
-        $("#btnSaveCustomer").prop("disabled", true);
+        $("#btnSaveEmployee").prop("disabled", true);
     }
 
     // let id = $("#customerCode").val();
