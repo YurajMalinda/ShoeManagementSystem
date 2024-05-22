@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface InventoryRepo extends JpaRepository<Inventory, String> {
-    List<Inventory> findByDescription(String name);
+    List<Inventory> findByItemDesc(String name);
 
-    Inventory findByCode(String id);
+    Inventory findByItemCode(String id);
 
-    List<Inventory> findBySalePriceBetween(double minPrice, double maxPrice);
+    List<Inventory> findByUnitPriceSaleBetween(double minPrice, double maxPrice);
 
     List<Inventory> findByCategoryContaining(String value);
 

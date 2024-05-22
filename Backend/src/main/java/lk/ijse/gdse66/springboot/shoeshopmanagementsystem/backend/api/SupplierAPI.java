@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/supplier")
+@CrossOrigin
 public class SupplierAPI {
     private final SupplierService supplierService;
 
@@ -50,7 +51,7 @@ public class SupplierAPI {
 
     @GetMapping("/searchByName")
     public List<SupplierDTO> searchByName(@PathVariable("supplierName") String supplierName){
-        return supplierService.searchSupplier(supplierName);
+        return supplierService.searchSupplierByName(supplierName);
     }
 
     @GetMapping("/searchById")

@@ -64,7 +64,7 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public List<InventoryDTO> searchItemByName(String name) {
-        return inventoryRepo.findByDescription(name).stream().map(inventory -> modelMapper.map(inventory,InventoryDTO.class)).toList();
+        return inventoryRepo.findByItemDesc(name).stream().map(inventory -> modelMapper.map(inventory,InventoryDTO.class)).toList();
     }
 
     @Override
@@ -72,7 +72,7 @@ public class InventoryServiceImpl implements InventoryService {
         if (!inventoryRepo.existsById(id)){
             throw new NotFoundException("Item Code does not exists!");
         }
-        Inventory inventory = inventoryRepo.findByCode(id);
+        Inventory inventory = inventoryRepo.findByItemCode(id);
         //System.out.println(employee.getCode());
         return modelMapper.map(inventory,InventoryDTO.class);
     }
@@ -84,7 +84,7 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public List<InventoryDTO> getAllItemsByPrice(double minPrice, double maxPrice) {
-        return inventoryRepo.findBySalePriceBetween(minPrice, maxPrice).stream().map(inventory -> modelMapper.map(inventory,InventoryDTO.class)).toList();
+        return inventoryRepo.findByUnitPriceSaleBetween(minPrice, maxPrice).stream().map(inventory -> modelMapper.map(inventory,InventoryDTO.class)).toList();
     }
 
     @Override

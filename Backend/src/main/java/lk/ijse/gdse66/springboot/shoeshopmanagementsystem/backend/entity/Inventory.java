@@ -31,8 +31,8 @@ public class Inventory {
     private Integer size_11;
     private String supplierCode;
     private String supplierName;
-    private Double unitPrice_sale;
-    private Double unitPrice_buy;
+    private Double unitPriceSale;
+    private Double unitPriceBuy;
     private Double expectedProfit;
     private Double profitMargin;
     private String status;

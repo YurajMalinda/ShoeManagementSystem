@@ -63,7 +63,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public List<SupplierDTO> searchSupplierByName(String supplierName) {
-        List<SupplierDTO> list = supplierRepo.findByName(supplierName).stream().map(supplier -> modelMapper.map(supplier, SupplierDTO.class)).toList();
+        List<SupplierDTO> list = supplierRepo.findBySupplierName(supplierName).stream().map(supplier -> modelMapper.map(supplier, SupplierDTO.class)).toList();
         return list;
     }
 
@@ -73,7 +73,7 @@ public class SupplierServiceImpl implements SupplierService {
             throw new NotFoundException("Supplier Id does not exists!");
         }
 //        return customerRepo.findById(id).map(customer -> mapper.map(customer, CustomerDTO.class)).get();
-        Supplier supplier = supplierRepo.findByCode(supplierCode);
+        Supplier supplier = supplierRepo.findBySupplierCode(supplierCode);
         return modelMapper.map(supplier,SupplierDTO.class);
     }
 
@@ -82,7 +82,7 @@ public class SupplierServiceImpl implements SupplierService {
         String prefix = "S";
         String id = "";
 
-        Supplier lastSupplier = supplierRepo.findTopOrderByCodeDesc();
+        Supplier lastSupplier = supplierRepo.findTopByOrderBySupplierCodeDesc();
         int nextNumericPart;
         if (lastSupplier != null) {
             String lastCode = lastSupplier.getSupplierCode();

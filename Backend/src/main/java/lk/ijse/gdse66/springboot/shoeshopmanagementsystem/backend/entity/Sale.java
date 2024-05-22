@@ -28,6 +28,6 @@ public class Sale {
     private Customer customerCode;
     private String customerName;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "order_id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "orderNo")
     private List<SaleDetail> saleDetails = new ArrayList<>();
 }
