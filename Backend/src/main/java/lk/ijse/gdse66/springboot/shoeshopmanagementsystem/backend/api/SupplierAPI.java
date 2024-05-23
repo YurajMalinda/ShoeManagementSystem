@@ -49,12 +49,12 @@ public class SupplierAPI {
         supplierService.deleteSupplier(supplierCode);
     }
 
-    @GetMapping("/searchByName")
+    @GetMapping("/searchByName/{supplierName}")
     public List<SupplierDTO> searchByName(@PathVariable("supplierName") String supplierName){
         return supplierService.searchSupplierByName(supplierName);
     }
 
-    @GetMapping("/searchById")
+    @GetMapping("/searchById/{supplierCode}")
     public SupplierDTO searchByID(@PathVariable("supplierCode") String supplierCode){
         return supplierService.searchSupplierById(supplierCode);
     }

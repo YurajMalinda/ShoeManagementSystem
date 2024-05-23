@@ -1,14 +1,14 @@
-let innerBox = document.getElementById('innerBox');
-let employeeProPic = document.getElementById('employeeProPic');
-let plusIcon = document.getElementById('plusIcon');
-let profilePic = document.getElementById('plusIconContainer');
+let innerShadow = document.getElementById('shadowLayer');
+let itemPic = document.getElementById('itemPic');
+let plusMark = document.getElementById('plusMark');
+let profilePic = document.getElementById('imageContainer');
 
-plusIcon.addEventListener('click', function() {
-    employeeProPic.click();
+plusMark.addEventListener('click', function() {
+    itemPic.click();
 })
 
-innerBox.addEventListener('click', function() {
-    employeeProPic.click();
+innerShadow.addEventListener('click', function() {
+    itemPic.click();
 })
 // ------------------------------------------------------------------------------------------------------------------
 
@@ -306,12 +306,12 @@ function bindTableRowEventsEmployee() {
 }
 
 function setEmpImage(resp) {
-    $("#plusIconContainer").empty();
+    $("#imageContainer").empty();
     var proPic = resp.employeeProfilePic;
     //console.log("table click = "+proPic)
 
     var imageElement = `<img alt="image" src="data:image/png;base64,${proPic}" style="width: 100%;">`
-    $("#plusIconContainer").append(imageElement);
+    $("#imageContainer").append(imageElement);
 }
 
 function empProPicSearchByID(empCode) {
@@ -502,21 +502,21 @@ function updateEmployee(code) {
     }
 }
 
-$('#employeeProPic').on('change', function(event) {
-    if ($('#employeeProPic').val() !== ""){
-        $("#plusIconContainer").empty();
+$('#itemPic').on('change', function(event) {
+    if ($('#itemPic').val() !== ""){
+        $("#imageContainer").empty();
         var file = $(this).prop('files')[0];
         var reader = new FileReader();
 
         reader.onload = function(e) {
             var imageElement = `<img alt="image" src="${e.target.result}" style="max-width: 100%; padding: 0;">`;
-            $("#plusIconContainer").append(imageElement);
+            $("#imageContainer").append(imageElement);
         };
 
         reader.readAsDataURL(file);
-        $("#btnUpdateEmployee").prop("disabled", false);
+        $("#btnUpdateInventory").prop("disabled", false);
     }
-    $("#plusIconContainer").empty();
+    $("#imageContainer").empty();
 });
 
 // --------------Clear btn event---------------------------

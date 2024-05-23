@@ -508,6 +508,45 @@ header>nav:first-child>li:first-child>a{
     opacity: 0.5;
 }
 
+
+/*-----------------Inventory form----------------------------------*/
+
+#imageContainer {
+    background: url("../../assets/images/Profile_pic.jpg");
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#shadowLayer{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    opacity: 0;
+    background: black;
+    cursor: pointer;
+}
+
+#imageContainer:hover #shadowLayer{
+    transition: 0.1s all;
+    opacity: 0.4;
+}
+
+#plusMark {
+    align-self: center;
+    z-index: 1;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#imageContainer:hover #plusMark{
+    transition: 0.5s all;
+    opacity: 0.5;
+}
+
 #dashboardContent>section>section>div:nth-child(3){
 }
 
@@ -522,7 +561,8 @@ header>nav:first-child>li:first-child>a{
     background: #1a2d7a;
 }
 
+/*----------------Supplier form---------------*/
 #dashboardContent>section>section>div:nth-child(7){
-    background: #557383;
+
 }
 

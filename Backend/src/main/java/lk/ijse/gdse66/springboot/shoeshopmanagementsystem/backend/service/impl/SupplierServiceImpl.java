@@ -79,7 +79,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public String generateNextId() {
-        String prefix = "S";
+        String prefix = "S00-";
         String id = "";
 
         Supplier lastSupplier = supplierRepo.findTopByOrderBySupplierCodeDesc();
@@ -96,7 +96,7 @@ public class SupplierServiceImpl implements SupplierService {
         } else {
             nextNumericPart = 1;
         }
-        id = prefix + String.format("%04d", nextNumericPart);
+        id = prefix + String.format("%03d", nextNumericPart);
 
         return id;
     }

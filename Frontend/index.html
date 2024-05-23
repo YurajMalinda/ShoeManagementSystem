@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="assets/fonts/Josefin sans/stylesheet1.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="Controller/validation/InventoryValidation.js"></script>
+    <script src="Controller/InventoryController.js"></script>
 </head>
 <body>
 
@@ -505,7 +507,7 @@
                                 <div class="row g-2">
                                     <div class="col-6 col-sm-2" style="height: 11em; padding-right: 0; position: relative; display: flex; justify-content: center;">
                                         <div id="imageContainer" class="w-100 h-100 position-relative overflow-hidden"></div>
-                                        <div id="s"></div>
+                                        <div id="shadowLayer"></div>
                                         <img id="plusMark" src="assets/images/icons/plus.png" style="width: 40%;">
                                         <input type="file" class="form-control form-control-sm visually-hidden" id="itemPic">
                                     </div>
@@ -648,7 +650,109 @@
 
             <div id="orderDetailsView" class="mainForm"></div>
 
-            <div id="supplierForm" class="mainForm"></div>
+            <div id="supplierForm" class="mainForm container-fluid">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12">
+                        <div class="card h-100" style="font-family: Josefin Sans, cursive">
+                            <div class="card-header">
+                                Supplier
+                            </div>
+                            <div class="card-body px-3 py-2" style="background: #fffbfc;">
+                                <div class="row g-2">
+                                    <div class="col-6 col-sm-4">
+                                        <label for="supplierCode" class="form-label">Supplier Code:</label>
+                                        <input disabled type="text" class="form-control form-control-sm" placeholder="Supplier Code" id="supplierCode">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="supplierName" class="form-label">Supplier Name:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Supplier Name" id="supplierName">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="selectCategory" class="form-label">Category:</label>
+                                        <select id="selectCategory" class="form-select form-select-sm">
+                                            <option selected>--Select category--</option>
+                                            <option value="LOCAL">Local</option>
+                                            <option value="INTERNATIONAL">International</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine1Supplier" class="form-label">Address line 01:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Building no or name" id="addressLine1Supplier">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine2Supplier" class="form-label">Address line 02:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Lane" id="addressLine2Supplier">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine3Supplier" class="form-label">Address line 03:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Main city" id="addressLine3Supplier">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine4Supplier" class="form-label">Address line 04:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Main state" id="addressLine4Supplier">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine5Supplier" class="form-label">Address line 05:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Postal code" id="addressLine5Supplier">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="addressLine6Supplier" class="form-label">Address line 06:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Origin country" id="addressLine6Supplier">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="mobileContactNo" class="form-label">Mobile no:</label>
+                                        <input type="number" class="form-control form-control-sm" placeholder="Contact no" id="mobileContactNo">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="landlineContactNo" class="form-label">Landline no:</label>
+                                        <input type="number" class="form-control form-control-sm" placeholder="Contact no" id="landlineContactNo">
+                                    </div>
+                                    <div class="col-6 col-sm-4">
+                                        <label for="supplierEmail" class="form-label">Email:</label>
+                                        <input type="email" class="form-control form-control-sm" placeholder="Email" id="supplierEmail">
+                                    </div>
+                                </div>
+                                <div class="col-12 btn-group mt-3 d-flex justify-content-end">
+                                    <button id="btnSaveSupplier" type="button" class="col-1 btn btn-outline-success btn-sm">Save</button>
+                                    <button id="btnUpdateSupplier" class="col-1 btn btn-outline-primary btn-sm ms-1" type="button">Update</button>
+                                    <button id="btnDeleteSupplier" class="col-1 btn btn-outline-danger btn-sm ms-1" type="button">Delete</button>
+                                    <button id="btnClearSupplier" class="col-1 btn btn-outline-secondary btn-sm ms-1" type="button">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 d-flex justify-content-end mb-2" style="margin: 0; font-family: Josefin Sans, cursive">
+                        <input type="text" placeholder="Search" class="col-sm-2 form-control form-control-sm" id="txtSearchSupplier">
+                        <select id="selectType" class="ms-1 col-sm-2 form-select form-select-sm">
+                            <option selected value="DEFAULT">--Select type--</option>
+                            <option value="ID">ID</option>
+                            <option value="NAME">Name</option>
+                        </select>
+                        <button id="btnSearchSupplier" type="button" class="col-1 btn btn-outline-success btn-sm ms-1 me-3">Search</button>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-sm p-0">
+                            <div class="table-responsive" style="overflow-y: auto;">
+                                <table class="table table-sm table-bordered table-hover shadow-sm" style="font-family: Josefin Sans, cursive; font-size: 0.9em;">
+                                    <thead>
+                                    <tr>
+                                        <th style="background-color: #f6f6f6;" scope="col">Supplier code</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Supplier name</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Category</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Address</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Mobile no</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Landline no</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Email</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tblSupplier">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </section>
 </section>
@@ -665,4 +769,8 @@
 <script src="Controller/validation/CustomerValidation.js"></script>
 <script src="Controller/EmployeeController.js"></script>
 <script src="Controller/validation/EmployeeValidation.js"></script>
+<script src="Controller/SupplierController.js"></script>
+<script src="Controller/validation/SupplierValidation.js"></script>
+<script src="Controller/validation/InventoryValidation.js"></script>
+<script src="Controller/InventoryController.js"></script>
 </html>
