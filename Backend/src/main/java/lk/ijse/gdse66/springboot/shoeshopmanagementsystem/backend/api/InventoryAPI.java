@@ -27,7 +27,7 @@ public class InventoryAPI {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public InventoryDTO saveCustomer(@Valid @RequestBody InventoryDTO inventoryDTO) {
+    public InventoryDTO saveInventory(@Valid @RequestBody InventoryDTO inventoryDTO) {
         return inventoryService.saveInventory(inventoryDTO);
     }
 
@@ -50,12 +50,12 @@ public class InventoryAPI {
         inventoryService.deleteInventory(itemCode);
     }
 
-    @GetMapping("/searchByName")
+    @GetMapping("/searchByName/{itemName}")
     public List<InventoryDTO> searchByName(@PathVariable("itemName") String itemName){
         return inventoryService.searchItemByName(itemName);
     }
 
-    @GetMapping("/searchById")
+    @GetMapping("/searchById/{itemCode}")
     public InventoryDTO searchById(@PathVariable("itemCode") String itemCode){
         return inventoryService.searchItemById(itemCode);
     }
@@ -70,15 +70,20 @@ public class InventoryAPI {
         return inventoryService.getAllItemsByPrice(minPrice, maxPrice);
     }
 
-    @GetMapping("/getAllItemsByCategoryGender")
+    @GetMapping("/getAllItemsByCategoryGender/{gender}")
     public List<InventoryDTO> getAllItemsByGender(@PathVariable("gender") String gender){
         System.out.println("gender = "+gender);
         return inventoryService.getAllItemsByGender(gender);
     }
 
-    @GetMapping("/getAllItemsByCategoryOccasion")
+    @GetMapping("/getAllItemsByCategoryOccasion/{occasion}")
     public List<InventoryDTO> getAllItemsByOccasion(@PathVariable("occasion") String occasion){
         System.out.println("occasion = "+occasion);
         return inventoryService.getAllItemsByGender(occasion);
+    }
+
+    @GetMapping("/nextId/{prefix}")
+    public String nextId(@PathVariable("prefix") String prefix){
+        return inventoryService.generateNextId(prefix);
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface InventoryRepo extends JpaRepository<Inventory, String> {
+    Inventory findTopByOrderByItemCodeDesc();
+
     List<Inventory> findByItemDesc(String name);
 
     Inventory findByItemCode(String id);

@@ -22,7 +22,6 @@ public class InventoryDTO implements Serializable {
     private String itemPicture;
     @NotBlank(message = "Category can not be null!")
     private String category;
-    @NotBlank(message = "Size can not be null!")
     private Integer size_5;
     private Integer size_6;
     private Integer size_7;
@@ -32,10 +31,8 @@ public class InventoryDTO implements Serializable {
     private Integer size_11;
     private String supplierCode;
     private String supplierName;
-    @NotBlank(message = "Sale price can not be null!")
-    private Double unitPrice_sale;
-    @NotBlank(message = "Buy price can not be null!")
-    private Double unitPrice_buy;
+    private Double unitPriceSale;
+    private Double unitPriceBuy;
     private Double expectedProfit;
     private Double profitMargin;
     private String status;

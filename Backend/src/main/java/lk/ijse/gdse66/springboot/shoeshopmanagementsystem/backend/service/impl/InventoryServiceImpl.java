@@ -3,6 +3,7 @@ package lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.service.impl;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.dto.InventoryDTO;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.dto.SupplierDTO;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.entity.Inventory;
+import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.entity.Supplier;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.repository.InventoryRepo;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.repository.SupplierRepo;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.service.InventoryService;
@@ -13,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -90,5 +93,36 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public List<InventoryDTO> getAllItemsByGender(String gender) {
         return inventoryRepo.findByCategoryContaining(gender).stream().map(inventory -> modelMapper.map(inventory,InventoryDTO.class)).toList();
+    }
+
+    @Override
+    public String generateNextId(String prefix) {
+        System.out.println(prefix);
+        String nextId = "";
+
+        // Check if an item code with the given prefix already exists
+        Inventory existingItem = inventoryRepo.findByItemCode(prefix);
+        System.out.println(prefix);
+        if (existingItem != null) {
+            nextId = existingItem.getItemCode();
+        } else {
+            // If no existing item code, generate a new one
+            Inventory lastItemCode = inventoryRepo.findTopByOrderByItemCodeDesc();
+            int nextNumericPart;
+            if (lastItemCode != null) {
+                String lastCode = lastItemCode.getItemCode();
+                String numericPartString = lastCode.replaceAll("[^0-9]", ""); // Remove non-numeric characters
+                try {
+                    int numericPart = Integer.parseInt(numericPartString);
+                    nextNumericPart = numericPart + 1;
+                } catch (NumberFormatException e) {
+                    nextNumericPart = 1;
+                }
+            } else {
+                nextNumericPart = 1;
+            }
+            nextId = prefix + String.format("%05d", nextNumericPart);
+        }
+        return nextId;
     }
 }

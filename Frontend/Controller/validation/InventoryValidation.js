@@ -1,75 +1,78 @@
 // ------regex for text fields-----
-const EMP_CODE_REGEX = /^(E00-)[0-9]{3}$/;
-const EMP_NAME_REGEX = /^[A-Za-z ]{5,}$/;
-const EMP_ADDRESS_REGEX = /^[A-Za-z0-9\s,.'-]{3,}$/;
-const EMP_EMAIL_REGEX =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const EMP_CONTACT_NO_REGEX = /^\d{10}$/;
+const ITM_NAME_REGEX = /^[A-Za-z ]{3,}$/;
+const ITM_NUM_REGEX = /^(0|[1-9]\d*)$/;
+const ITM_DECIMAL_REGEX = /^-?\d*\.?\d+$/;
 
 // -------add validations to the text fields----------
-let emp_vArray = new Array();
-emp_vArray.push({field: $("#employeeCode"), regex: EMP_CODE_REGEX});
-emp_vArray.push({field: $("#employeeName"), regex: EMP_NAME_REGEX});
-emp_vArray.push({field: $("#status"), regex: EMP_NAME_REGEX});
-emp_vArray.push({field: $("#designation"), regex: EMP_NAME_REGEX});
-emp_vArray.push({field: $("#attachedBranch"), regex: EMP_NAME_REGEX});
-emp_vArray.push({field: $("#addressLine1Employee"), regex: EMP_ADDRESS_REGEX});
-emp_vArray.push({field: $("#addressLine2Employee"), regex: EMP_ADDRESS_REGEX});
-emp_vArray.push({field: $("#addressLine3Employee"), regex: EMP_ADDRESS_REGEX});
-emp_vArray.push({field: $("#addressLine4Employee"), regex: EMP_ADDRESS_REGEX});
-emp_vArray.push({field: $("#addressLine5Employee"), regex: EMP_ADDRESS_REGEX});
-emp_vArray.push({field: $("#employeeContactNo"), regex: EMP_CONTACT_NO_REGEX});
-emp_vArray.push({field: $("#employeeEmail"), regex: EMP_EMAIL_REGEX});
-emp_vArray.push({field: $("#emergencyInformName"), regex: EMP_NAME_REGEX});
-emp_vArray.push({field: $("#emergencyInformContact"), regex: EMP_CONTACT_NO_REGEX});
+let item_vArray = new Array();
+item_vArray.push({field:$("#itemDesc"),regEx: ITM_NAME_REGEX});
+item_vArray.push({field:$("#category"),regEx: ITM_NAME_REGEX});
+item_vArray.push({field:$("#size5"),regEx: ITM_NUM_REGEX});
+item_vArray.push({field:$("#size6"),regEx: ITM_NUM_REGEX});
+item_vArray.push({field:$("#size7"),regEx: ITM_NUM_REGEX});
+item_vArray.push({field:$("#size8"),regEx: ITM_NUM_REGEX});
+item_vArray.push({field:$("#size9"),regEx: ITM_NUM_REGEX});
+item_vArray.push({field:$("#size10"),regEx: ITM_NUM_REGEX});
+item_vArray.push({field:$("#size11"),regEx: ITM_NUM_REGEX});
+item_vArray.push({field:$("#unitPriceSale"),regEx: ITM_DECIMAL_REGEX});
+item_vArray.push({field:$("#unitPriceBuy"),regEx: ITM_DECIMAL_REGEX});
+item_vArray.push({field:$("#expectedProfit"),regEx: ITM_DECIMAL_REGEX});
+item_vArray.push({field:$("#profitMargin"),regEx: ITM_DECIMAL_REGEX});
+item_vArray.push({field:$("#stockStatus"),regEx: ITM_NAME_REGEX});
 
-function clearEmployeeInputFields(){
-    $("#employeeCode, #employeeName, #status, #designation, #dobOfEmployee, #joinedDate, #attachedBranch, #addressLine1Employee, #addressLine2Employee, #addressLine3Employee, #addressLine4Employee, #addressLine5Employee, #employeeContactNo, #employeeEmail, #emergencyInformName, #emergencyInformContact").val("");
-    $("input[name='gender']").prop("checked", false);
-    $("input[name='role']").prop("checked", false);
-    $("#employeeCode, #employeeName, #status, #designation, #dobOfEmployee, #joinedDate, #attachedBranch, #addressLine1Employee, #addressLine2Employee, #addressLine3Employee, #addressLine4Employee, #addressLine5Employee, #employeeContactNo, #employeeEmail, #emergencyInformName, #emergencyInformContact").css("border", "1px solid #ced4da");
-    $("#plusIconContainer").empty();
-    $("#employeeCode").focus();
-    setBtnGroupEmployee();
+function clearItemInputFields(){
+    $("#itemDesc, #category, #size5, #size6, #size7, #size8, #size9, #size10, #size11, #selectSupplierCode, #supName, #unitPriceSale, #unitPriceBuy, #expectedProfit, #profitMargin, #stockStatus, #selectOccasion, #selectVerities, #selectGender").val("");
+    $("#itemDesc, #category, #size5, #size6, #size7, #size8, #size9, #size10, #size11, #selectSupplierCode, #supName, #unitPriceSale, #unitPriceBuy, #expectedProfit, #profitMargin, #stockStatus").css("border", "1px solid #ced4da");
+    $("#imageContainer").empty();
+    $("#itemDesc").focus();
+    loadAllSuppliersCode();
+    loadNextItemCode();
+    getAllItem();
+    setBtnGroupItem();
 }
 
-setBtnGroupEmployee();
+setBtnGroupItem();
 
-$("#employeeCode, #employeeName, #status, #designation, #attachedBranch, #addressLine1Employee, #addressLine2Employee, #addressLine3Employee, #addressLine4Employee, #addressLine5Employee, #employeeContactNo, #employeeEmail, #emergencyInformName, #emergencyInformContact").on("keydown keyup", function (e){
-    let indexNo = emp_vArray.indexOf(emp_vArray.find((c) => c.field.attr("id") == e.target.id));
+$("#itemDesc, #category, #size5, #size6, #size7, #size8, #size9, #size10, #size11, #unitPriceSale, #unitPriceBuy, #expectedProfit, #profitMargin, #stockStatus").on("keydown keyup", function (e){
+    let indexNo = item_vArray.indexOf(item_vArray.find((c) => c.field.attr("id") == e.target.id));
 
     if (e.key == "Tab") {
         e.preventDefault();
     }
 
-    checkValidationsEmployee(emp_vArray[indexNo]);
+    checkValidationsItem(item_vArray[indexNo]);
 
-    setBtnGroupEmployee();
-    $("#btnUpdateEmployee").prop("disabled", false);
+    setBtnGroupItem();
+    $("#btnUpdateItem").prop("disabled", false);
 
     if (e.key == "Enter") {
-        if (e.target.id != emp_vArray[emp_vArray.length-1].field.attr("id")) {
-            if (checkValidationsEmployee(emp_vArray[indexNo])) {
-                emp_vArray[indexNo+1].field.focus();
+        if (e.target.id != item_vArray[item_vArray.length-1].field.attr("id")) {
+            if (checkValidationsItem(item_vArray[indexNo])) {
+                item_vArray[indexNo+1].field.focus();
             }
         }else {
-            if (checkValidationsEmployee(emp_vArray[indexNo])) {
-                saveEmployee();
+            if (checkValidationsItem(item_vArray[indexNo])) {
+                saveItem();
             }
         }
     }
 });
 
-function checkValidationsEmployee(object){
-    if((object.regex.test(object.field.val()))){
-        setBorderEmployee(true, object)
+// $("#selectOccasion, #selectVerities, #selectGender").on("change", function () {
+//     updateItemCode();
+// });
+
+function checkValidationsItem(object){
+    if((object.regEx.test(object.field.val()))){
+        setBorderItem(true, object)
         return true;
     }
-    setBorderEmployee(false, object)
+    setBorderItem(false, object)
     return false;
 }
 
 
-function setBorderEmployee(bool, object) {
+function setBorderItem(bool, object) {
     if (!bool){
         if(object.field.val().length >=1){
             object.field.css("border", "2px solid red");
@@ -85,21 +88,21 @@ function setBorderEmployee(bool, object) {
     }
 }
 
-function checkAllEmployee(){
-    for (let i = 0; i < emp_vArray.length; i++) {
-        if (!checkValidationsEmployee(emp_vArray[i])) return false;
+function checkAllItem(){
+    for (let i = 0; i < item_vArray.length; i++) {
+        if (!checkValidationsItem(item_vArray[i])) return false;
     }
     return true;
 }
 
-function setBtnGroupEmployee() {
-    $("#btnDeleteEmployee").prop("disabled", true);
-    $("#btnUpdateEmployee").prop("disabled", true);
+function setBtnGroupItem() {
+    $("#btnDeleteItem").prop("disabled", true);
+    $("#btnUpdateItem").prop("disabled", true);
 
-    if (checkAllEmployee()){
-        $("#btnSaveEmployee").prop("disabled", false);
+    if (checkAllItem()){
+        $("#btnSaveItem").prop("disabled", false);
     }else{
-        $("#btnSaveEmployee").prop("disabled", true);
+        $("#btnSaveItem").prop("disabled", true);
     }
 
     // let id = $("#customerCode").val();

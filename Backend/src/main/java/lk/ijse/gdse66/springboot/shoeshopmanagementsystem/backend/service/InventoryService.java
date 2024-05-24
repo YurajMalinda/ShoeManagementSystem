@@ -16,4 +16,5 @@ public interface InventoryService {
     List<SupplierDTO> loadSupplierCode();
     List<InventoryDTO> getAllItemsByPrice(double minPrice, double maxPrice);
     List<InventoryDTO> getAllItemsByGender(String gender);
+    String generateNextId(String prefix);
 }

@@ -1,15 +1,27 @@
-let innerBox = document.getElementById('innerBox');
-let employeeProPic = document.getElementById('employeeProPic');
-let plusIcon = document.getElementById('plusIcon');
-let profilePic = document.getElementById('plusIconContainer');
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the elements by their IDs
+    let innerBox = document.getElementById('innerBox');
+    let employeeProPic = document.getElementById('employeeProPic');
+    let plusIcon = document.getElementById('plusIcon');
 
-plusIcon.addEventListener('click', function() {
-    employeeProPic.click();
-})
+    // Check if the elements exist before adding event listeners
+    if (innerBox && employeeProPic && plusIcon) {
+        // Add a click event listener to the plusMark element
+        plusIcon.addEventListener('click', function() {
+            // Programmatically click the itemPic element
+            employeeProPic.click();
+        });
 
-innerBox.addEventListener('click', function() {
-    employeeProPic.click();
-})
+        // Add a click event listener to the innerShadow element
+        innerBox.addEventListener('click', function() {
+            // Programmatically click the itemPic element
+            employeeProPic.click();
+        });
+    } else {
+        console.error('One or more elements not found in the DOM');
+    }
+});
+
 // ------------------------------------------------------------------------------------------------------------------
 
 getAllEmployee();

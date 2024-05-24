@@ -1,70 +1,190 @@
-let innerShadow = document.getElementById('shadowLayer');
-let itemPic = document.getElementById('itemPic');
-let plusMark = document.getElementById('plusMark');
-let profilePic = document.getElementById('imageContainer');
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the elements by their IDs
+    let innerShadow = document.getElementById('shadowLayer');
+    let itemPic = document.getElementById('itemPicture');
+    let plusMark = document.getElementById('plusMark');
 
-plusMark.addEventListener('click', function() {
-    itemPic.click();
-})
+    // Check if the elements exist before adding event listeners
+    if (innerShadow && itemPic && plusMark) {
+        // Add a click event listener to the plusMark element
+        plusMark.addEventListener('click', function() {
+            // Programmatically click the itemPic element
+            itemPic.click();
+        });
 
-innerShadow.addEventListener('click', function() {
-    itemPic.click();
-})
+        // Add a click event listener to the innerShadow element
+        innerShadow.addEventListener('click', function() {
+            // Programmatically click the itemPic element
+            itemPic.click();
+        });
+    } else {
+        console.error('One or more elements not found in the DOM');
+    }
+});
+
+document.getElementById('selectOccasion').addEventListener('change', updateItemCode);
+document.getElementById('selectVerities').addEventListener('change', updateItemCode);
+document.getElementById('selectGender').addEventListener('change', updateItemCode);
+
 // ------------------------------------------------------------------------------------------------------------------
 
-getAllEmployee();
+getAllItem();
+loadAllSuppliersCode();
+loadNextItemCode();
+let supplierAllData;
 
 // --------------Search customer function---------------------------
-$("#btnSearchEmployee").click(function () {
-    let empCode = $("#txtSearchEmployee").val();
-    $("#tblEmployee").empty();
+$("#btnSearchItem").click(function () {
+    let itemValue = $("#txtSearchItem").val();
+    if (itemValue === ""){
+        Swal.fire({
+            icon: "warning",
+            title: "Oooops...",
+            text: "Please input itemCode or name!"
+        })
+        return;
+    }
+    let searchType = $("#selectItemType").val();
+
+    if (searchType === "ID"){
+        itemSearchById(itemValue);
+    } else if(searchType === "NAME"){
+        itemSearchByName(itemValue);
+    }
+});
+
+function itemSearchByName(name) {
     $.ajax({
-        type : "GET",
-        url: "http://localhost:8080/api/v1/employees/" + empCode,
+        url: "http://localhost:8080/api/v1/inventory/searchByName/"+name,
+        method: "GET",
+        dataType: "json",
         // headers: {
         //     "Authorization": "Bearer " + localStorage.getItem("token")
         // },
-        success : function (details) {
-            console.log(details);
-            console.log(details.employeeCode);
+        success: function (details) {
+            if (details.length === 0){
+                Swal.fire({
+                    icon: "warning",
+                    title: "Oooops...",
+                    text: "Item name not found!"
+                })
+                return;
+            }
+            $("#tblInventory").empty();
+            $.each(details, function (index, details) {
+                console.log(details);
+                console.log(details.itemCode);
 
-            let row =  `<tr>
-                        <td>${details.employeeProfilePic}</td>
-                        <td>${details.employeeCode}</td>
-                        <td>${details.employeeName}</td>
-                        <td>${details.gender}</td>
+                let row = `<tr style="vertical-align: middle">
+                        <td><img alt="image" src="${details.itemPicture}" style="max-width: 60px; border-radius: 10px;"></td>
+                        <td>${details.itemCode}</td>
+                        <td>${details.itemDesc}</td>
+                        <td>${details.category}</td>
+                        <td>${details.size_5}</td>
+                        <td>${details.size_6}</td>
+                        <td>${details.size_7}</td>
+                        <td>${details.size_8}</td>
+                        <td>${details.size_9}</td>
+                        <td>${details.size_10}</td>
+                        <td>${details.size_11}</td>
+                        <td>${details.supplierCode}</td>
+                        <td>${details.supplierName}</td>
+                        <td>${details.unitPriceSale}</td>
+                        <td>${details.unitPriceBuy}</td>
+                        <td>${details.expectedProfit}</td>
+                        <td>${details.profitMargin}</td>
                         <td>${details.status}</td>
-                        <td>${details.designation}</td>
-                        <td>${details.accessRole}</td>
-                        <td>${details.dob}</td>
-                        <td>${details.dateOfJoin}</td>
-                        <td>${details.attachedBranch}</td>
-                        <td>${details.addressLine01 + "," + details.addressLine02 + "," + details.addressLine03 + "," + details.addressLine04 + "," + details.addressLine05}</td>
-                        <td>${details.contactNo}</td>
-                        <td>${details.email}</td>
-                        <td>${details.emergencyInform}</td>
-                        <td>${details.emergencyContact}</td>
-                    </tr>`;
+                        <td style="display: none;">${details.itemPicture}</td>
+                </tr>`;
 
-            $("#tblEmployee").append(row);
-            bindTableRowEventsEmployee();
-            $("#txtSearchEmployee").val("");
-        },
-        error : function (error) {
-            Swal.fire({
-                icon: "warning",
-                title: "Oooops...",
-                text: "No result found!..."
+                $("#tblInventory").append(row);
+                bindTableRowEventsInventory();
+                $("#txtSearchItem").val("");
+                $("#selectItemType").prop("selectedIndex", "DEFAULT");
             })
+        },
+        error: function (xhr, status, error) {
+            console.log("itemSearchByName = "+error)
         }
-    });
-});
+    })
+}
+
+function itemSearchById(code) {
+    $.ajax({
+        url: "http://localhost:8080/api/v1/inventory/searchById/" + code,
+        method: "GET",
+        dataType: "json",
+        // headers: {
+        //     "Authorization": "Bearer " + localStorage.getItem("token")
+        // },
+        success: function (details) {
+            $("#tblInventory").empty();
+            console.log(details);
+            console.log(details.supplierCode);
+
+            let row = `<tr style="vertical-align: middle">
+                        <td><img alt="image" src="${details.itemPicture}" style="max-width: 60px; border-radius: 10px;"></td>
+                        <td>${details.itemCode}</td>
+                        <td>${details.itemDesc}</td>
+                        <td>${details.category}</td>
+                        <td>${details.size_5}</td>
+                        <td>${details.size_6}</td>
+                        <td>${details.size_7}</td>
+                        <td>${details.size_8}</td>
+                        <td>${details.size_9}</td>
+                        <td>${details.size_10}</td>
+                        <td>${details.size_11}</td>
+                        <td>${details.supplierCode}</td>
+                        <td>${details.supplierName}</td>
+                        <td>${details.unitPriceSale}</td>
+                        <td>${details.unitPriceBuy}</td>
+                        <td>${details.expectedProfit}</td>
+                        <td>${details.profitMargin}</td>
+                        <td>${details.status}</td>
+                        <td style="display: none;">${details.itemPicture}</td>
+                </tr>`;
+
+            $("#tblInventory").append(row);
+            bindTableRowEventsInventory();
+            $("#txtSearchItem").val("");
+            $("#selectItemType").prop("selectedIndex", "DEFAULT");
+        },
+        error: function (xhr, textStatus, error) {
+            console.log("itemSearchById error: ", error);
+            console.log("itemSearchById error: ", xhr.status);
+            if (xhr.status===404){
+                Swal.fire({
+                    icon: "warning",
+                    title: "Oooops...",
+                    text: "Item id not found!"
+                })
+            }
+        }
+    })
+}
+
+function loadNextItemCode(prefix) {
+    console.log("prefix: "+prefix);
+    $.ajax({
+        url:"http://localhost:8080/api/v1/inventory/nextId/" + prefix,
+        method:"GET",
+        // headers: {
+        //     "Authorization": "Bearer " + localStorage.getItem("token")
+        // },
+        success:function (resp) {
+            $("#itemCode").val(resp);
+        },
+        error:function (xhr, status, error) {
+            console.log("loadNextItemId() ="+error)
+        }
+    })
+}
 
 // --------------Search customer function---------------------------
-function searchEmployee(employeeCode) {
+function searchItem(itemCode) {
     $.ajax({
         type : "GET",
-        url: "http://localhost:8080/api/v1/employees/" + employeeCode,
+        url: "http://localhost:8080/api/v1/inventory/" + itemCode,
         success : function (details) {
             console.log(details);
             return true;
@@ -73,93 +193,120 @@ function searchEmployee(employeeCode) {
 }
 
 // --------------Save btn event---------------------------
-$("#btnSaveEmployee").click(function (){
-    if (checkAllEmployee()){
-        saveEmployee();
+$("#btnSaveItem").click(function (){
+    if (checkAllItem()){
+        saveItem();
     }else {
         alert("Something went wrong!");
     }
 });
 
+function updateItemCode(){
+    let occasion = $("#selectOccasion").val();
+    let verities = $("#selectVerities").val();
+    let gender = $("#selectGender").val();
+    let itemCode = $("#itemCode");
+
+    if (occasion && verities && gender) {
+        let prefix = occasion + verities + gender ;
+        console.log(prefix);
+        let nextId = loadNextItemCode(prefix);
+        itemCode.val(nextId);
+        console.log(nextId);
+    }else {
+        itemCode.val("");
+    }
+}
+
 // --------------Save Customer function---------------------------
-function saveEmployee() {
-    let empCode = $("#employeeCode").val();
-    let empName = $("#employeeName").val();
-    let empProPic = $("#employeeProPic").prop('files')[0];
-    let gender = $("input[name='gender']:checked").val();
-    let status = $("#status").val();
-    let designation = $("#designation").val();
-    let role = $("input[name='role']:checked").val();
-    let dob = $("#dobOfEmployee").val();
-    let joinDate = $("#joinedDate").val();
-    let branch = $("#attachedBranch").val();
-    let address1 = $("#addressLine1Employee").val();
-    let address2 = $("#addressLine2Employee").val();
-    let address3 = $("#addressLine3Employee").val();
-    let address4 = $("#addressLine4Employee").val();
-    let address5 = $("#addressLine5Employee").val();
-    let contactNo = $("#employeeContactNo").val();
-    let email = $("#employeeEmail").val();
-    let emergencyInform = $("#emergencyInformName").val();
-    let emergencyContact = $("#emergencyInformContact").val();
+function saveItem() {
+    let itemCode = $("#itemCode").val();
+    let itemName = $("#itemDesc").val();
+    let itemPic = $("#itemPicture").prop('files')[0];
+    let category = $("#category").val();
+    let size5 = $("#size5").val();
+    let size6 = $("#size6").val();
+    let size7 = $("#size7").val();
+    let size8 = $("#size8").val();
+    let size9 = $("#size9").val();
+    let size10 = $("#size10").val();
+    let size11 = $("#size11").val();
+    let supplierCode = $("#selectSupplierCode").val();
+    let supplierName = $("#supName").val();
+    let unitPriceSale = $("#unitPriceSale").val();
+    let unitPriceBuy = $("#unitPriceBuy").val();
+    let profit = $("#expectedProfit").val();
+    let profitMargin = $("#profitMargin").val();
+    let status = $("#stockStatus").val();
 
-    var formData = new FormData();
-    formData.append('employeeCode',empCode);
-    formData.append('employeeName',empName);
-    formData.append('employeeProfilePic',empProPic);
-    formData.append('gender',gender);
-    formData.append('status',status);
-    formData.append('designation',designation);
-    formData.append('accessRole',role);
-    formData.append('dob',dob);
-    formData.append('dateOfJoin',joinDate);
-    formData.append('attachedBranch',branch);
-    formData.append('addressLine01',address1);
-    formData.append('addressLine02',address2);
-    formData.append('addressLine03',address3);
-    formData.append('addressLine04',address4);
-    formData.append('addressLine05',address5);
-    formData.append('contactNo',contactNo);
-    formData.append('email',email);
-    formData.append('emergencyInform',emergencyInform);
-    formData.append('emergencyContact',emergencyContact);
+    if (!itemPic) {
+        // Handle case where no file is selected
+        console.error('No file selected');
+        return;
+    }
 
-    $.ajax({
-        type : "POST",
-        url : "http://localhost:8080/api/v1/employees",
-        data: formData,
-        processData: false,
-        contentType: false,
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+    let reader = new FileReader();
+    reader.onload = function (event) {
+        let base64String = event.target.result;
 
-        success : function (details) {
-            console.log(details);
-            Swal.fire({
-                position: "center",
-                icon : "success",
-                title : "Employee has been saved successfully!...",
-                showConfirmButton: false,
-                timer: 2000
-            });
-            clearEmployeeInputFields();
-            getAllEmployee();
-            // loadCustomerIds();
-        },
-        error : function (jqXHR, textStatus, errorThrown) {
-            console.log("AJAX Error: " + textStatus, errorThrown, jqXHR);
-            if (jqXHR.status == 409) {
+        var itemObj = {
+            "itemCode":itemCode,
+            "itemDesc":itemName,
+            "itemPicture":base64String,
+            "category":category,
+            "size_5":size5,
+            "size_6":size6,
+            "size_7":size7,
+            "size_8":size8,
+            "size_9":size9,
+            "size_10":size10,
+            "size_11":size11,
+            "supplierCode":supplierCode,
+            "supplierName":supplierName,
+            "unitPriceSale":unitPriceSale,
+            "unitPriceBuy":unitPriceBuy,
+            "expectedProfit":profit,
+            "profitMargin":profitMargin,
+            "status": status
+        }
+
+        $.ajax({
+            type : "POST",
+            url : "http://localhost:8080/api/v1/inventory",
+            dataType: "json",
+            contentType:"application/json",
+            data: JSON.stringify(itemObj),
+            // headers: {
+            //     "Authorization": "Bearer " + localStorage.getItem("token")
+            // },
+
+            success : function (details) {
+                console.log(details);
                 Swal.fire({
                     position: "center",
-                    icon: "warning",
-                    title: jqXHR.responseText,
+                    icon : "success",
+                    title : "Item has been saved successfully!...",
                     showConfirmButton: false,
                     timer: 2000
                 });
+                clearItemInputFields();
+                getAllItem();
+            },
+            error : function (jqXHR, textStatus, errorThrown) {
+                console.log("AJAX Error: " + textStatus, errorThrown, jqXHR);
+                if (jqXHR.status == 409) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "warning",
+                        title: jqXHR.responseText,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
             }
-        }
-    });
+        })
+    };
+    reader.readAsDataURL(itemPic);
 }
 
 // // --------------Get all btn event---------------------------
@@ -168,40 +315,44 @@ function saveEmployee() {
 // })
 
 // --------------Get all customer function---------------------------
-function getAllEmployee(){
-    $("#tblEmployee").empty();
+function getAllItem(){
+    $("#tblInventory").empty();
 
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/api/v1/employees",
+        url: "http://localhost:8080/api/v1/inventory",
         dataType: "json",
         // headers: {
         //     "Authorization": "Bearer " + localStorage.getItem("token")
         // },
         success : function (details) {
             console.log("Success: ", details);
-            console.log(details.employeeCode);
-            for (let employee of details) {
+            console.log(details.itemCode);
+            for (let inventory of details) {
                 let row = `<tr style="vertical-align: middle">
-                        <td><img alt="image" src="data:image/png;base64,${employee.employeeProfilePic}" style="max-width: 60px; border-radius: 10px;"></td>
-                        <td>${employee.employeeCode}</td>
-                        <td>${employee.employeeName}</td>
-                        <td>${employee.gender}</td>
-                        <td>${employee.status}</td>
-                        <td>${employee.designation}</td>
-                        <td>${employee.accessRole}</td>
-                        <td>${employee.dob}</td>
-                        <td>${employee.dateOfJoin}</td>
-                        <td>${employee.attachedBranch}</td>
-                        <td>${employee.addressLine01 + "," + employee.addressLine02 + "," + employee.addressLine03 + "," + employee.addressLine04 + "," + employee.addressLine05}</td>
-                        <td>${employee.contactNo}</td>
-                        <td>${employee.email}</td>
-                        <td>${employee.emergencyInform}</td>
-                        <td>${employee.emergencyContact}</td>
+                        <td><img alt="image" src="${inventory.itemPicture}" style="max-width: 60px; border-radius: 10px;"></td>
+                        <td>${inventory.itemCode}</td>
+                        <td>${inventory.itemDesc}</td>
+                        <td>${inventory.category}</td>
+                        <td>${inventory.size_5}</td>
+                        <td>${inventory.size_6}</td>
+                        <td>${inventory.size_7}</td>
+                        <td>${inventory.size_8}</td>
+                        <td>${inventory.size_9}</td>
+                        <td>${inventory.size_10}</td>
+                        <td>${inventory.size_11}</td>
+                        <td>${inventory.supplierCode}</td>
+                        <td>${inventory.supplierName}</td>
+                        <td>${inventory.unitPriceSale}</td>
+                        <td>${inventory.unitPriceBuy}</td>
+                        <td>${inventory.expectedProfit}</td>
+                        <td>${inventory.profitMargin}</td>
+                        <td>${inventory.status}</td>
+                        <td style="display: none;">${inventory.itemPicture}</td>
                 </tr>`;
 
-                $("#tblEmployee").append(row);
-                bindTableRowEventsEmployee();
+                $("#tblInventory").append(row);
+                bindTableRowEventsInventory();
             }
         },
         error: function (error) {
@@ -216,35 +367,33 @@ function getAllEmployee(){
 }
 
 // --------------Bind row to fields function---------------------------
-function bindTableRowEventsEmployee() {
-    $("#tblEmployee>tr").click(function (){
-        let empProPic = $(this).children().eq(0).html();
-        let empCode = $(this).children().eq(1).text();
-        let empName = $(this).children().eq(2).text();
-        let gender = $(this).children().eq(3).text();
-        let status = $(this).children().eq(4).text();
-        let designation = $(this).children().eq(5).text();
-        let role = $(this).children().eq(6).text();
-        let dob = $(this).children().eq(7).text();
-        let joinDate = $(this).children().eq(8).text();
-        let branch = $(this).children().eq(9).text();
-        let address = $(this).children().eq(10).text();
-        let arr = address.split(",");
-        let addressLine01 = arr[0];
-        let addressLine02 = arr[1];
-        let addressLine03 = arr[2];
-        let addressLine04 = arr[3];
-        let addressLine05 = arr[4];
-        let contact = $(this).children().eq(11).text();
-        let email = $(this).children().eq(12).text();
-        let emergencyInform = $(this).children().eq(13).text();
-        let emergencyContact = $(this).children().eq(14).text();
+function bindTableRowEventsInventory() {
+    $("#tblInventory>tr").click(function (){
+        let itemPic = $(this).children().eq(0).html();
+        let itemCode = $(this).children().eq(1).text();
+        let itemDesc = $(this).children().eq(2).text();
+        let category = $(this).children().eq(3).text();
+        let size5 = $(this).children().eq(4).text();
+        let size6 = $(this).children().eq(5).text();
+        let size7 = $(this).children().eq(6).text();
+        let size8 = $(this).children().eq(7).text();
+        let size9 = $(this).children().eq(8).text();
+        let size10 = $(this).children().eq(9).text();
+        let size11 = $(this).children().eq(10).text();
+        let supplierCode = $(this).children().eq(11).text();
+        let supplierName = $(this).children().eq(12).text();
+        let unitPriceSale = $(this).children().eq(13).text();
+        let unitPriceBuy = $(this).children().eq(14).text();
+        let profit = $(this).children().eq(15).text();
+        let profitMargin = $(this).children().eq(16).text();
+        let status = $(this).children().eq(17).text();
+        let hiddenImage = $(this).children().eq(18).text();
 
         var base64Data;
-        var matches = empProPic.match(/src="data:image\/png;base64,([^"]+)"/);
+        var matches = itemPic.match(/src="data:image\/jpeg;base64,([^"]+)"/);
         if (matches) {
             base64Data = matches[1];
-            //console.log(base64Data);
+            //console.log("base64 = "+base64Data);
 
             // Decode base64 data into a blob
             var byteCharacters = atob(base64Data);
@@ -257,103 +406,63 @@ function bindTableRowEventsEmployee() {
 
             // Create a file from the blob
             var file = new File([blob], 'image.png', { type: 'image/png' });
-            console.log(file)
+            //console.log(file)
 
             var dataTransfer = new DataTransfer();
             dataTransfer.items.add(file);
 
             // Set the files property of the file chooser input field using the files property of the DataTransfer object
-            var fileInput = document.getElementById('employeeProPic');
+            var fileInput = document.getElementById('itemPicture');
             fileInput.files = dataTransfer.files;
 
         } else {
             console.log("No image data found in the table cell.");
         }
 
-        $("#employeeCode").val(empCode)
-        $("#employeeName").val(empName)
-        $("#status").val(status)
-        $("#designation").val(designation)
-        $("#dobOfEmployee").val(dob)
-        $("#joinedDate").val(joinDate)
-        $("#attachedBranch").val(branch)
-        $("#addressLine1Employee").val(addressLine01)
-        $("#addressLine2Employee").val(addressLine02)
-        $("#addressLine3Employee").val(addressLine03)
-        $("#addressLine4Employee").val(addressLine04)
-        $("#addressLine5Employee").val(addressLine05)
-        $("#employeeContactNo").val(contact)
-        $("#employeeEmail").val(email)
-        $("#emergencyInformName").val(emergencyInform)
-        $("#emergencyInformContact").val(emergencyContact)
+        $("#itemCode").val(itemCode)
+        $("#itemDesc").val(itemDesc)
+        $("#category").val(category)
+        $("#size5").val(size5)
+        $("#size6").val(size6)
+        $("#size7").val(size7)
+        $("#size8").val(size8)
+        $("#size9").val(size9)
+        $("#size10").val(size10)
+        $("#size11").val(size11)
+        $("#selectSupplierCode").val(supplierCode)
+        $("#supName").val(supplierName)
+        $("#unitPriceSale").val(unitPriceSale)
+        $("#unitPriceBuy").val(unitPriceBuy)
+        $("#expectedProfit").val(profit)
+        $("#profitMargin").val(profitMargin)
+        $("#stockStatus").val(status)
 
-        if (gender === 'MALE') {
-            $("#radioEmployeeMale").prop("checked", true);
-        } else if (gender === 'FEMALE') {
-            $("#radioEmployeeFemale").prop("checked", true);
-        }
+        $("#imageContainer").empty().append(`<img alt="image" src="${hiddenImage}" style="width: 100%;">`)
 
-        if (role === 'ADMIN') {
-            $("#radioAdmin").prop("checked", true);
-        } else if (gender === 'USER') {
-            $("#radioUser").prop("checked", true);
-        }
-
-        empProPicSearchByID(empCode);
-
-        $("#btnDeleteEmployee").prop("disabled", false);
+        $("#btnDeleteItem").prop("disabled", false);
+        $("#btnUpdateItem").prop("disabled", false);
     });
 }
 
-function setEmpImage(resp) {
-    $("#imageContainer").empty();
-    var proPic = resp.employeeProfilePic;
-    //console.log("table click = "+proPic)
-
-    var imageElement = `<img alt="image" src="data:image/png;base64,${proPic}" style="width: 100%;">`
-    $("#imageContainer").append(imageElement);
-}
-
-function empProPicSearchByID(empCode) {
-    $.ajax({
-        url: "http://localhost:8080/api/v1/employees/" + empCode,
-        method: "GET",
-        dataType: "json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
-        success: function (resp) {
-            setEmpImage(resp);
-        },
-        error: function (xhr, textStatus, error) {
-            console.log("empSearchById error: ", error);
-            console.log("empSearchById error: ", xhr.status);
-            if (xhr.status===404){
-                swal("Error", "This employee does not exits!", "error");
-            }
-        }
-    })
-}
-
 // --------------Delete btn event---------------------------
-$("#btnDeleteEmployee").click(function (){
-    let code = $("#employeeCode").val();
+$("#btnDeleteItem").click(function (){
+    let code = $("#itemCode").val();
     if (code === "") {
         Swal.fire({
             icon: "warning",
-            title: "Please input valid employee ID!!!",
+            title: "Please input valid item code!!!",
             timer: 2000
         });
         return;
     }
-    deleteEmployee(code);
+    deleteItem(code);
 });
 
 // --------------Delete customer function---------------------------
-function deleteEmployee(code) {
+function deleteItem(code) {
     Swal.fire({
         icon : "warning",
-        title : "Do you want to delete this customer ?.",
+        title : "Do you want to delete this item ?.",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
@@ -363,7 +472,7 @@ function deleteEmployee(code) {
         if (result.isConfirmed) {
             $.ajax({
                 type : "DELETE",
-                url : "http://localhost:8080/api/v1/employees/" + code,
+                url : "http://localhost:8080/api/v1/inventory/" + code,
                 dataType: "json",
                 // headers: {
                 //     "Authorization": "Bearer " + localStorage.getItem("token")
@@ -371,18 +480,18 @@ function deleteEmployee(code) {
                 success : function (details) {
                     Swal.fire({
                         icon : "success",
-                        title : "Customer has been deleted successfully!...",
+                        title : "Item has been deleted successfully!...",
                         showConfirmButton: false,
                         timer: 2000
                     });
-                    clearEmployeeInputFields();
-                    getAllEmployee();
+                    clearItemInputFields();
+                    getAllItem();
                 },
                 error : function (jqXHR, textStatus, errorThrown) {
                     console.log("ÄJAX error: "+ textStatus, errorThrown);
                     Swal.fire({
                         icon: "warning",
-                        title: "Customer has been deleted unsuccessfully!!!",
+                        title: "Item has been deleted unsuccessfully!!!",
                         timer: 2000
                     });
                 }
@@ -393,22 +502,22 @@ function deleteEmployee(code) {
 }
 
 // --------------Update btn event---------------------------
-$("#btnUpdateEmployee").click(function (){
-    let code = $("#employeeCode").val();
-    updateEmployee(code);
-    clearEmployeeInputFields();
+$("#btnUpdateItem").click(function (){
+    let code = $("#itemCode").val();
+    updateItem(code);
+    clearItemInputFields();
 });
 
 // --------------Update Customer function---------------------------
-function updateEmployee(code) {
-    if (searchEmployee(code)) {
+function updateItem(code) {
+    if (searchItem(code)) {
         Swal.fire({
             icon: "warning",
             title: "Oooops...",
-            text: "No such customer. Please check the ID!..."
+            text: "No such item. Please check the code!..."
         });
     } else {
-        let confirmation = confirm("Do you want to update this customer ?.")
+        let confirmation = confirm("Do you want to update this item ?.")
         // Swal.fire({
         //     position: "center",
         //     icon : "warning",
@@ -419,91 +528,127 @@ function updateEmployee(code) {
 
         if (confirmation) {
             console.log(code);
-            let empCode = $("#employeeCode").val();
-            let empName = $("#employeeName").val();
-            let gender = $("input[name='gender']:checked").val();
-            let status = $("#status").val();
-            let designation = $("#designation").val();
-            let role = $("input[name='role']:checked").val();
-            let dob = $("#dobOfEmployee").val();
-            let joinDate = $("#joinedDate").val();
-            let branch = $("#attachedBranch").val();
-            let address1 = $("#addressLine1Employee").val();
-            let address2 = $("#addressLine2Employee").val();
-            let address3 = $("#addressLine3Employee").val();
-            let address4 = $("#addressLine4Employee").val();
-            let address5 = $("#addressLine5Employee").val();
-            let contactNo = $("#employeeContactNo").val();
-            let email = $("#employeeEmail").val();
-            let emergencyInform = $("#emergencyInformName").val();
-            let emergencyContact = $("#emergencyInformContact").val();
 
-            var formData = new FormData();
-            formData.append('employeeCode',empCode);
-            formData.append('employeeName',empName);
-            formData.append('gender',gender);
-            formData.append('status',status);
-            formData.append('designation',designation);
-            formData.append('accessRole',role);
-            formData.append('dob',dob);
-            formData.append('dateOfJoin',joinDate);
-            formData.append('attachedBranch',branch);
-            formData.append('addressLine01',address1);
-            formData.append('addressLine02',address2);
-            formData.append('addressLine03',address3);
-            formData.append('addressLine04',address4);
-            formData.append('addressLine05',address5);
-            formData.append('contactNo',contactNo);
-            formData.append('email',email);
-            formData.append('emergencyInform',emergencyInform);
-            formData.append('emergencyContact',emergencyContact);
+            let itemCode = $("#itemCode").val();
+            let itemName = $("#itemDesc").val();
+            let itemPic = $("#itemPicture").prop('files')[0];
+            let category = $("#category").val();
+            let size5 = $("#size5").val();
+            let size6 = $("#size6").val();
+            let size7 = $("#size7").val();
+            let size8 = $("#size8").val();
+            let size9 = $("#size9").val();
+            let size10 = $("#size10").val();
+            let size11 = $("#size11").val();
+            let supplierCode = $("#selectSupplierCode").val();
+            let supplierName = $("#supName").val();
+            let unitPriceSale = $("#unitPriceSale").val();
+            let unitPriceBuy = $("#unitPriceBuy").val();
+            let profit = $("#expectedProfit").val();
+            let profitMargin = $("#profitMargin").val();
+            let status = $("#stockStatus").val();
 
-            let empProPic = $('#employeeProPic')[0];
-            if (empProPic.files.length > 0) {
-                formData.append('employeeProfilePic', empProPic.files[0]);
+            if (!itemPic) {
+                // Handle case where no file is selected
+                console.error('No file selected');
+                return;
             }
-            console.log("proPic = "+empProPic);
 
-            console.log(formData)
+            let reader = new FileReader();
+            reader.onload = function (event) {
+                let base64String = event.target.result;
 
-            $.ajax({
-                type : "PATCH",
-                url : "http://localhost:8080/api/v1/employees/" + empCode,
-                processData: false,
-                contentType: false,
-                data: formData,
-                // headers: {
-                //     "Authorization": "Bearer " + localStorage.getItem("token")
-                // },
-                success : function (details) {
-                    console.log(details);
-                    Swal.fire({
-                        position: "center",
-                        icon : "success",
-                        title : "Customer has been updated successfully!...",
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                    clearEmployeeInputFields();
-                    getAllEmployee();
-                },
-                error : function (jqXHR, textStatus, errorThrown) {
-                    console.log("AJAX Error: " + textStatus, errorThrown, jqXHR);
-                    Swal.fire({
-                        position: "center",
-                        icon: "warning",
-                        title: "Customer has been not updated!!!",
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
+                var itemObj = {
+                    "itemCode":itemCode,
+                    "itemDesc":itemName,
+                    "itemPicture":base64String,
+                    "category":category,
+                    "size_5":size5,
+                    "size_6":size6,
+                    "size_7":size7,
+                    "size_8":size8,
+                    "size_9":size9,
+                    "size_10":size10,
+                    "size_11":size11,
+                    "supplierCode":supplierCode,
+                    "supplierName":supplierName,
+                    "unitPriceSale":unitPriceSale,
+                    "unitPriceBuy":unitPriceBuy,
+                    "expectedProfit":profit,
+                    "profitMargin":profitMargin,
+                    "status": status
                 }
-            });
+
+                $.ajax({
+                    type : "PATCH",
+                    url : "http://localhost:8080/api/v1/inventory/" + itemCode,
+                    dataType: "json",
+                    contentType:"application/json",
+                    data: JSON.stringify(itemObj),
+                    // headers: {
+                    //     "Authorization": "Bearer " + localStorage.getItem("token")
+                    // },
+                    success : function (details) {
+                        console.log(details);
+                        Swal.fire({
+                            position: "center",
+                            icon : "success",
+                            title : "Item has been updated successfully!...",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                        clearItemInputFields();
+                        getAllItem();
+                    },
+                    error : function (jqXHR, textStatus, errorThrown) {
+                        console.log("AJAX Error: " + textStatus, errorThrown, jqXHR);
+                        Swal.fire({
+                            position: "center",
+                            icon: "warning",
+                            title: "Item has been not updated!!!",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    }
+                });
+            };
+            reader.readAsDataURL(itemPic);
         }
     }
 }
 
-$('#itemPic').on('change', function(event) {
-    if ($('#itemPic').val() !== ""){
+function loadAllSuppliersCode() {
+    $("#selectSupplierCode").empty();
+    $("#selectSupplierCode").append(`<option selected></option>`);
+    $.ajax({
+        url: "http://localhost:8080/api/v1/inventory/loadSuppliersCode",
+        method: "GET",
+        dataType: "json",
+        // headers: {
+        //     "Authorization": "Bearer " + localStorage.getItem("token")
+        // },
+        success: function (resp) {
+            supplierAllData = resp;
+            $.each(resp,function (index, supplier) {
+                $("#selectSupplierCode").append(`<option value="${supplier.supplierCode}">${supplier.supplierCode}</option>`);
+            })
+        },
+        error: function (xhr, status, error) {
+            console.log("getItemAllSuppliers = "+error)
+        }
+    })
+
+    $("#selectSupplierCode").click(function () {
+        $.each(supplierAllData,function (index, supplier) {
+            if ($("#selectSupplierCode").val()===supplier.supplierCode){
+                $("#supName").val(supplier.supplierName);
+            }
+        })
+    })
+}
+
+$('#itemPicture').on('change', function(event) {
+    if ($('#itemPicture').val() !== ""){
         $("#imageContainer").empty();
         var file = $(this).prop('files')[0];
         var reader = new FileReader();
@@ -519,7 +664,9 @@ $('#itemPic').on('change', function(event) {
     $("#imageContainer").empty();
 });
 
+
+
 // --------------Clear btn event---------------------------
-$("#btnClearEmployee").click(function (){
-    clearEmployeeInputFields();
+$("#btnClearItem").click(function (){
+    clearItemInputFields();
 });

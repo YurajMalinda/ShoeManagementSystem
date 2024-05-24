@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="assets/fonts/Josefin sans/stylesheet1.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="Controller/validation/InventoryValidation.js"></script>
-    <script src="Controller/InventoryController.js"></script>
 </head>
 <body>
 
@@ -509,111 +507,131 @@
                                         <div id="imageContainer" class="w-100 h-100 position-relative overflow-hidden"></div>
                                         <div id="shadowLayer"></div>
                                         <img id="plusMark" src="assets/images/icons/plus.png" style="width: 40%;">
-                                        <input type="file" class="form-control form-control-sm visually-hidden" id="itemPic">
+                                        <input type="file" class="form-control form-control-sm visually-hidden" id="itemPicture">
                                     </div>
                                     <div class="col-6 col-sm-10">
                                         <div class="form-row">
                                             <div class="form-group col-6 col-sm-4">
-                                                <label for="employeeCode" class="form-label">Employee Code:</label>
-                                                <input type="text" class="form-control form-control-sm" placeholder="Employee Code" id="employeeCode">
+                                                <label for="selectOccasion" class="form-label">Occasion:</label>
+                                                <select id="selectOccasion" class="form-select form-select-sm">
+                                                    <option selected></option>
+                                                    <option value="F">Formal</option>
+                                                    <option value="C">Casual</option>
+                                                    <option value="I">Industrial</option>
+                                                    <option value="S">Sport</option>
+                                                </select>
                                             </div>
                                             <div class="form-group col-6 col-sm-4">
-                                                <label for="employeeName" class="form-label">Employee Name:</label>
-                                                <input type="text" class="form-control form-control-sm" placeholder="Employee Name" id="employeeName">
+                                                <label for="selectVerities" class="form-label">Verities:</label>
+                                                <select id="selectVerities" class="form-select form-select-sm">
+                                                    <option selected></option>
+                                                    <option value="S">Shoes</option>
+                                                    <option value="H">Heel</option>
+                                                    <option value="FL">Flats</option>
+                                                    <option value="W">Wedges</option>
+                                                    <option value="FF">Flip Flops</option>
+                                                    <option value="SD">Sandals</option>
+                                                    <option value="SL">Slippers</option>
+                                                </select>
                                             </div>
                                             <div class="form-group col-6 col-sm-4">
-                                                <label class="form-label">Gender:</label><br>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="gender" id="radioEmployeeMale" value="MALE">
-                                                    <label class="form-check-label" for="radioMale">Male</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="gender" id="radioEmployeeFemale" value="FEMALE">
-                                                    <label class="form-check-label" for="radioFemale">Female</label>
-                                                </div>
+                                                <label for="selectGender" class="form-label">Gender:</label>
+                                                <select id="selectGender" class="form-select form-select-sm">
+                                                    <option selected></option>
+                                                    <option value="M">Man</option>
+                                                    <option value="W">Women</option>
+                                                </select>
                                             </div>
                                             <div class="form-group col-6 col-sm-4">
-                                                <label for="status" class="form-label">Status:</label>
-                                                <input type="text" class="form-control form-control-sm" placeholder="Civil status" id="status">
+                                                <label for="itemCode" class="form-label">Item code:</label>
+                                                <input type="text" class="form-control form-control-sm" placeholder="Item code" id="itemCode">
                                             </div>
                                             <div class="form-group col-6 col-sm-4">
-                                                <label for="designation" class="form-label">Designation:</label>
-                                                <input type="text" class="form-control form-control-sm" placeholder="Designation" id="designation">
+                                                <label for="itemDesc" class="form-label">Item Desc:</label>
+                                                <input type="text" class="form-control form-control-sm" placeholder="Item name" id="itemDesc">
                                             </div>
                                             <div class="form-group col-6 col-sm-4">
-                                                <label class="form-label">Role:</label><br>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="role" id="radioAdmin" value="ADMIN">
-                                                    <label class="form-check-label" for="radioAdmin">Admin</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="role" id="radioUser" value="USER">
-                                                    <label class="form-check-label" for="radioUser">Role</label>
-                                                </div>
+                                                <label for="category" class="form-label">Category:</label>
+                                                <input type="text" class="form-control form-control-sm" placeholder="Shoe type" id="category">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-sm-4">
-                                        <label for="dobOfEmployee" class="form-label">DOB:</label>
-                                        <input type="date" class="form-control form-control-sm" id="dobOfEmployee">
+                                    <div class="col-4 col-sm-2">
+                                        <label for="size5" class="form-label">Size_5:</label>
+                                        <input type="number" class="form-control form-control-sm" id="size5">
                                     </div>
-                                    <div class="col-6 col-sm-4">
-                                        <label for="joinedDate" class="form-label">Joined date:</label>
-                                        <input type="date" class="form-control form-control-sm" id="joinedDate">
+                                    <div class="col-4 col-sm-2">
+                                        <label for="size6" class="form-label">Size_6:</label>
+                                        <input type="number" class="form-control form-control-sm" id="size6">
                                     </div>
-                                    <div class="col-6 col-sm-4">
-                                        <label for="attachedBranch" class="form-label">Attached branch:</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Which branch?" id="attachedBranch">
+                                    <div class="col-4 col-sm-2">
+                                        <label for="size7" class="form-label">Size_7:</label>
+                                        <input type="number" class="form-control form-control-sm" id="size7">
                                     </div>
-                                    <div class="col-6 col-sm-4">
-                                        <label for="addressLine1Employee" class="form-label">Address line 01:</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Building no or name" id="addressLine1Employee">
+                                    <div class="col-4 col-sm-2">
+                                        <label for="size8" class="form-label">Size_8:</label>
+                                        <input type="number" class="form-control form-control-sm" id="size8">
                                     </div>
-                                    <div class="col-6 col-sm-4">
-                                        <label for="addressLine2Employee" class="form-label">Address line 02:</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Lane" id="addressLine2Employee">
+                                    <div class="col-4 col-sm-2">
+                                        <label for="size9" class="form-label">Size_9:</label>
+                                        <input type="number" class="form-control form-control-sm" id="size9">
                                     </div>
-                                    <div class="col-6 col-sm-4">
-                                        <label for="addressLine3Employee" class="form-label">Address line 03:</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Main city" id="addressLine3Employee">
+                                    <div class="col-4 col-sm-2">
+                                        <label for="size10" class="form-label">Size_10:</label>
+                                        <input type="number" class="form-control form-control-sm" id="size10">
                                     </div>
-                                    <div class="col-6 col-sm-4">
-                                        <label for="addressLine4Employee" class="form-label">Address line 04:</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Main state" id="addressLine4Employee">
+                                    <div class="col-4 col-sm-2">
+                                        <label for="size11" class="form-label">Size_11:</label>
+                                        <input type="number" class="form-control form-control-sm" id="size11">
                                     </div>
-                                    <div class="col-6 col-sm-4">
-                                        <label for="addressLine5Employee" class="form-label">Address line 05:</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Postal code" id="addressLine5Employee">
+                                    <div class="col-6 col-sm-5">
+                                        <label for="selectSupplierCode" class="form-label">Supplier code:</label>
+                                        <select id="selectSupplierCode" class="form-select form-select-sm">
+
+                                        </select>
                                     </div>
-                                    <div class="col-6 col-sm-4">
-                                        <label for="employeeContactNo" class="form-label">Contact:</label>
-                                        <input type="number" class="form-control form-control-sm" placeholder="Contact No" id="employeeContactNo">
+                                    <div class="col-6 col-sm-5">
+                                        <label for="supName" class="form-label">Supplier name:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Supplier name" id="supName">
                                     </div>
-                                    <div class="col-6 col-sm-4">
-                                        <label for="employeeEmail" class="form-label">Email:</label>
-                                        <input type="email" class="form-control form-control-sm" placeholder="Email" id="employeeEmail">
+                                    <div class="col-4 col-sm-3">
+                                        <label for="unitPriceSale" class="form-label">Unit price(sale):</label>
+                                        <input type="number" class="form-control form-control-sm" placeholder="Sale price" id="unitPriceSale">
                                     </div>
-                                    <div class="col-6 col-sm-4">
-                                        <label for="emergencyInformName" class="form-label">In case of emergency:</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Name the guardian or nominated person" id="emergencyInformName">
+                                    <div class="col-4 col-sm-3">
+                                        <label for="unitPriceBuy" class="form-label">Unit price(buy):</label>
+                                        <input type="number" class="form-control form-control-sm" placeholder="Buy price" id="unitPriceBuy">
                                     </div>
-                                    <div class="col-6 col-sm-4">
-                                        <label for="emergencyInformContact" class="form-label">Emergency contact:</label>
-                                        <input type="number" class="form-control form-control-sm" placeholder="Contact details" id="emergencyInformContact">
+                                    <div class="col-4 col-sm-3">
+                                        <label for="expectedProfit" class="form-label">Profit:</label>
+                                        <input type="number" class="form-control form-control-sm" placeholder="Expected Profit" id="expectedProfit">
+                                    </div>
+                                    <div class="col-4 col-sm-3">
+                                        <label for="profitMargin" class="form-label">Profit margin:</label>
+                                        <input type="number" class="form-control form-control-sm" placeholder="Percentage of the profit" id="profitMargin">
+                                    </div>
+                                    <div class="col-4 col-sm-3">
+                                        <label for="stockStatus" class="form-label">Status:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Low, Available, Not available" id="stockStatus">
                                     </div>
                                 </div>
                                 <div class="col-12 btn-group mt-3 d-flex justify-content-end">
-                                    <button id="btnSaveEmployee" type="button" class="col-1 btn btn-outline-success btn-sm">Save</button>
-                                    <button id="btnUpdateEmployee" class="col-1 btn btn-outline-primary btn-sm ms-1" type="button">Update</button>
-                                    <button id="btnDeleteEmployee" class="col-1 btn btn-outline-danger btn-sm ms-1" type="button">Delete</button>
-                                    <button id="btnClearEmployee" class="col-1 btn btn-outline-secondary btn-sm ms-1" type="button">Clear</button>
+                                    <button id="btnSaveItem" type="button" class="col-1 btn btn-outline-success btn-sm">Save</button>
+                                    <button id="btnUpdateItem" class="col-1 btn btn-outline-primary btn-sm ms-1" type="button">Update</button>
+                                    <button id="btnDeleteItem" class="col-1 btn btn-outline-danger btn-sm ms-1" type="button">Delete</button>
+                                    <button id="btnClearItem" class="col-1 btn btn-outline-secondary btn-sm ms-1" type="button">Clear</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3 d-flex justify-content-end mb-2" style="margin: 0;">
-                        <input type="text" placeholder="Search" class="col-sm-2 form-control form-control-sm" id="txtSearchEmployee">
-                        <button id="btnSearchEmployee" type="button" class="col-1 btn btn-outline-success btn-sm ms-1 me-3">Search</button>
+                    <div class="row mt-3 d-flex justify-content-end mb-2" style="margin: 0; font-family: Josefin Sans, cursive;">
+                        <input type="text" placeholder="Search" class="col-sm-2 form-control form-control-sm" id="txtSearchItem">
+                        <select id="selectItemType" class="ms-1 col-sm-2 form-select form-select-sm">
+                            <option selected value="DEFAULT">--Select type--</option>
+                            <option value="ID">ID</option>
+                            <option value="NAME">Name</option>
+                        </select>
+                        <button id="btnSearchItem" type="button" class="col-1 btn btn-outline-success btn-sm ms-1 me-3">Search</button>
                     </div>
                     <div class="row mb-5">
                         <div class="col-sm p-0">
@@ -621,24 +639,27 @@
                                 <table class="table table-sm table-bordered table-hover shadow-sm" style="font-family: Josefin Sans, cursive; font-size: 0.9em;">
                                     <thead>
                                     <tr>
-                                        <th style="background-color: #f6f6f6;" scope="col">Profile pic</th>
-                                        <th style="background-color: #f6f6f6;" scope="col">Employee code</th>
-                                        <th style="background-color: #f6f6f6;" scope="col">Employee name</th>
-                                        <th style="background-color: #f6f6f6;" scope="col">Gender</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Item picture</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Item code</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Item desc</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Category</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Size_5</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Size_6</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Size_7</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Size_8</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Size_9</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Size_10</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Size_11</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Supplier Code</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Supplier Name</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">UnitPrice sale</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">UnitPrice buy</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Profit</th>
+                                        <th style="background-color: #f6f6f6;" scope="col">Profit margin</th>
                                         <th style="background-color: #f6f6f6;" scope="col">Status</th>
-                                        <th style="background-color: #f6f6f6;" scope="col">Designation</th>
-                                        <th style="background-color: #f6f6f6;" scope="col">Role</th>
-                                        <th style="background-color: #f6f6f6;" scope="col">DOB</th>
-                                        <th style="background-color: #f6f6f6;" scope="col">Joined date</th>
-                                        <th style="background-color: #f6f6f6;" scope="col">Branch</th>
-                                        <th style="background-color: #f6f6f6;" scope="col">Address</th>
-                                        <th style="background-color: #f6f6f6;" scope="col">Contact no</th>
-                                        <th style="background-color: #f6f6f6;" scope="col">Email</th>
-                                        <th style="background-color: #f6f6f6;" scope="col">Emergency inform</th>
-                                        <th style="background-color: #f6f6f6;" scope="col">Emergency contact</th>
                                     </tr>
                                     </thead>
-                                    <tbody id="tblEmployee"></tbody>
+                                    <tbody id="tblInventory"></tbody>
                                 </table>
                             </div>
                         </div>
