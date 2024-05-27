@@ -555,8 +555,8 @@ header>nav:first-child>li:first-child>a{
 #dashboardContent>section>section>div:nth-child(4){
 }
 
+/*----------------Place order form------------------*/
 #dashboardContent>section>section>div:nth-child(5){
-    background: #887475;
 }
 
 #dashboardContent>section>section>div:nth-child(6){
