@@ -100,29 +100,62 @@ public class InventoryServiceImpl implements InventoryService {
         System.out.println(prefix);
         String nextId = "";
 
-        // Check if an item code with the given prefix already exists
-        Inventory existingItem = inventoryRepo.findByItemCode(prefix);
+        // Find all item codes starting with the given prefix
+        List<Inventory> itemsWithPrefix = inventoryRepo.findByItemCodeStartingWith(prefix);
         System.out.println(prefix);
-        if (existingItem != null) {
-            nextId = existingItem.getItemCode();
-        } else {
-            // If no existing item code, generate a new one
-            Inventory lastItemCode = inventoryRepo.findTopByOrderByItemCodeDesc();
-            int nextNumericPart;
-            if (lastItemCode != null) {
-                String lastCode = lastItemCode.getItemCode();
-                String numericPartString = lastCode.replaceAll("[^0-9]", ""); // Remove non-numeric characters
+
+        if (itemsWithPrefix != null && !itemsWithPrefix.isEmpty()) {
+            // Find the highest numeric part of the existing item codes with the given prefix
+            int maxNumericPart = 0;
+            for (Inventory item : itemsWithPrefix) {
+                String itemCode = item.getItemCode();
+                String numericPartString = itemCode.replace(prefix, ""); // Remove the prefix to get the numeric part
                 try {
                     int numericPart = Integer.parseInt(numericPartString);
-                    nextNumericPart = numericPart + 1;
+                    if (numericPart > maxNumericPart) {
+                        maxNumericPart = numericPart;
+                    }
                 } catch (NumberFormatException e) {
-                    nextNumericPart = 1;
+                    // Handle the case where the numeric part is not a valid number
+                    // For simplicity, we'll ignore such cases
                 }
-            } else {
-                nextNumericPart = 1;
             }
-            nextId = prefix + String.format("%05d", nextNumericPart);
+            nextId = prefix + String.format("%05d", maxNumericPart + 1);
+        } else {
+            // If no existing item code with the given prefix, generate a new one
+            nextId = prefix + String.format("%05d", 1);
         }
+
         return nextId;
     }
+
+//    public String generateNextId(String prefix) {
+//        System.out.println(prefix);
+//        String nextId = "";
+//
+//        // Check if an item code with the given prefix already exists
+//        Inventory existingItem = inventoryRepo.findByItemCode(prefix);
+//        System.out.println(prefix);
+//        if (existingItem != null) {
+//            nextId = existingItem.getItemCode();
+//        } else {
+//            // If no existing item code, generate a new one
+//            Inventory lastItemCode = inventoryRepo.findTopByOrderByItemCodeDesc();
+//            int nextNumericPart;
+//            if (lastItemCode != null) {
+//                String lastCode = lastItemCode.getItemCode();
+//                String numericPartString = lastCode.replaceAll("[^0-9]", ""); // Remove non-numeric characters
+//                try {
+//                    int numericPart = Integer.parseInt(numericPartString);
+//                    nextNumericPart = numericPart + 1;
+//                } catch (NumberFormatException e) {
+//                    nextNumericPart = 1;
+//                }
+//            } else {
+//                nextNumericPart = 1;
+//            }
+//            nextId = prefix + String.format("%05d", nextNumericPart);
+//        }
+//        return nextId;
+//    }
 }

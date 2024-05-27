@@ -50,4 +50,6 @@ public interface InventoryRepo extends JpaRepository<Inventory, String> {
             "FROM Inventory i " +
             "WHERE i.itemCode = :itemCode", nativeQuery = true)
     Integer findQtyByItemCodeAndSize(String itemCode, String size);
+
+    List<Inventory> findByItemCodeStartingWith(String prefix);
 }

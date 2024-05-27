@@ -1,37 +1,20 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Get the elements by their IDs
-    let innerShadow = document.getElementById('shadowLayer');
-    let itemPic = document.getElementById('itemPicture');
-    let plusMark = document.getElementById('plusMark');
-
-    // Check if the elements exist before adding event listeners
-    if (innerShadow && itemPic && plusMark) {
-        // Add a click event listener to the plusMark element
-        plusMark.addEventListener('click', function() {
-            // Programmatically click the itemPic element
-            itemPic.click();
-        });
-
-        // Add a click event listener to the innerShadow element
-        innerShadow.addEventListener('click', function() {
-            // Programmatically click the itemPic element
-            itemPic.click();
-        });
-    } else {
-        console.error('One or more elements not found in the DOM');
-    }
-});
-
-document.getElementById('selectOccasion').addEventListener('change', updateItemCode);
-document.getElementById('selectVerities').addEventListener('change', updateItemCode);
-document.getElementById('selectGender').addEventListener('change', updateItemCode);
-
-// ------------------------------------------------------------------------------------------------------------------
 
 getAllItem();
 loadAllSuppliersCode();
 loadNextItemCode();
 let supplierAllData;
+
+$("#shadowLayer, #plusMark").on('click', function() {
+    $("#itemPicture").click();
+})
+
+$("#selectOccasion, #selectVerities, #selectGender").on('change', function() {
+    updateItemCodeCategory();
+})
+
+$("#unitPriceSale, #unitPriceBuy").on('change', function() {
+    updateProfitAndMargin();
+})
 
 // --------------Search customer function---------------------------
 $("#btnSearchItem").click(function () {
@@ -76,7 +59,7 @@ function itemSearchByName(name) {
                 console.log(details.itemCode);
 
                 let row = `<tr style="vertical-align: middle">
-                        <td><img alt="image" src="${details.itemPicture}" style="max-width: 60px; border-radius: 10px;"></td>
+                        <td><img alt="image" src="${details.itemPicture}" style="width: 60px; height: 60px; border-radius: 10px;"></td>
                         <td>${details.itemCode}</td>
                         <td>${details.itemDesc}</td>
                         <td>${details.category}</td>
@@ -123,7 +106,7 @@ function itemSearchById(code) {
             console.log(details.supplierCode);
 
             let row = `<tr style="vertical-align: middle">
-                        <td><img alt="image" src="${details.itemPicture}" style="max-width: 60px; border-radius: 10px;"></td>
+                        <td><img alt="image" src="${details.itemPicture}" style="width: 60px; height: 60px; border-radius: 10px;"></td>
                         <td>${details.itemCode}</td>
                         <td>${details.itemDesc}</td>
                         <td>${details.category}</td>
@@ -201,7 +184,7 @@ $("#btnSaveItem").click(function (){
     }
 });
 
-function updateItemCode(){
+function updateItemCodeCategory(){
     let occasion = $("#selectOccasion").val();
     let verities = $("#selectVerities").val();
     let gender = $("#selectGender").val();
@@ -217,6 +200,24 @@ function updateItemCode(){
         itemCode.val("");
     }
 }
+
+function updateProfitAndMargin() {
+    const salePrice = parseFloat($("#unitPriceSale").val());
+    const buyPrice = parseFloat($("#unitPriceBuy").val());
+    const profit = $("#expectedProfit");
+    const profitMargin = $("#profitMargin");
+
+    if (!isNaN(salePrice) && !isNaN(buyPrice)) {
+        let expectedProfit = salePrice - buyPrice;
+        profit.val(expectedProfit.toFixed(2));  // Ensure the profit is a fixed decimal number
+        let pMargin = (expectedProfit / salePrice) * 100;
+        profitMargin.val(pMargin);  // Ensure the profit margin is a fixed decimal number
+    } else {
+        profit.val("");
+        profitMargin.val("");
+    }
+}
+
 
 // --------------Save Customer function---------------------------
 function saveItem() {
@@ -330,7 +331,7 @@ function getAllItem(){
             console.log(details.itemCode);
             for (let inventory of details) {
                 let row = `<tr style="vertical-align: middle">
-                        <td><img alt="image" src="${inventory.itemPicture}" style="max-width: 60px; border-radius: 10px;"></td>
+                        <td><img alt="image" src="${inventory.itemPicture}" style="width: 60px; height: 60px; border-radius: 10px;"></td>
                         <td>${inventory.itemCode}</td>
                         <td>${inventory.itemDesc}</td>
                         <td>${inventory.category}</td>
@@ -437,7 +438,7 @@ function bindTableRowEventsInventory() {
         $("#profitMargin").val(profitMargin)
         $("#stockStatus").val(status)
 
-        $("#imageContainer").empty().append(`<img alt="image" src="${hiddenImage}" style="width: 100%;">`)
+        $("#imageContainer").empty().append(`<img alt="image" src="${hiddenImage}" style="width: 100%; height: 100%; background-position: center; background-size: cover; background-repeat: no-repeat; padding: 0; border-radius: 1rem;">`)
 
         $("#btnDeleteItem").prop("disabled", false);
         $("#btnUpdateItem").prop("disabled", false);
@@ -654,7 +655,7 @@ $('#itemPicture').on('change', function(event) {
         var reader = new FileReader();
 
         reader.onload = function(e) {
-            var imageElement = `<img alt="image" src="${e.target.result}" style="max-width: 100%; padding: 0;">`;
+            var imageElement = `<img alt="image" src="${e.target.result}" style="width: 100%; height: 100%; background-position: center; background-size: cover; background-repeat: no-repeat; padding: 0; border-radius: 1rem;">`;
             $("#imageContainer").append(imageElement);
         };
 

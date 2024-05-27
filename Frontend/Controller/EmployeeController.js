@@ -195,7 +195,7 @@ function getAllEmployee(){
             console.log(details.employeeCode);
             for (let employee of details) {
                 let row = `<tr style="vertical-align: middle">
-                        <td><img alt="image" src="data:image/png;base64,${employee.employeeProfilePic}" style="max-width: 60px; border-radius: 10px;"></td>
+                        <td><img alt="image" src="data:image/png;base64,${employee.employeeProfilePic}" style="width: 60px; height: 60px; border-radius: 10px;"></td>
                         <td>${employee.employeeCode}</td>
                         <td>${employee.employeeName}</td>
                         <td>${employee.gender}</td>
@@ -322,7 +322,7 @@ function setEmpImage(resp) {
     var proPic = resp.employeeProfilePic;
     //console.log("table click = "+proPic)
 
-    var imageElement = `<img alt="image" src="data:image/png;base64,${proPic}" style="width: 100%;">`
+    var imageElement = `<img alt="image" src="data:image/png;base64,${proPic}" style="width: 100%; height: 100%; background-position: center; background-size: cover; background-repeat: no-repeat; padding: 0; border-radius: 1rem;">`
     $("#plusIconContainer").append(imageElement);
 }
 
@@ -521,7 +521,7 @@ $('#employeeProPic').on('change', function(event) {
         var reader = new FileReader();
 
         reader.onload = function(e) {
-            var imageElement = `<img alt="image" src="${e.target.result}" style="max-width: 100%; padding: 0;">`;
+            var imageElement = `<img alt="image" src="${e.target.result}" style="width: 100%; height: 100%; background-position: center; background-size: cover; background-repeat: no-repeat; padding: 0; border-radius: 1rem;">`;
             $("#plusIconContainer").append(imageElement);
         };
 

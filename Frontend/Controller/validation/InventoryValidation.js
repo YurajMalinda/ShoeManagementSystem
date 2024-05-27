@@ -27,7 +27,6 @@ function clearItemInputFields(){
     $("#itemDesc").focus();
     loadAllSuppliersCode();
     loadNextItemCode();
-    getAllItem();
     setBtnGroupItem();
 }
 

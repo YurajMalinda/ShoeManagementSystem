@@ -479,6 +479,7 @@ header>nav:first-child>li:first-child>a{
     justify-content: center;
     align-items: center;
     display: flex;
+    border-radius: 1rem;
 }
 
 #innerBox{
@@ -518,6 +519,7 @@ header>nav:first-child>li:first-child>a{
     justify-content: center;
     align-items: center;
     display: flex;
+    border-radius: 1rem;
 }
 
 #shadowLayer{
