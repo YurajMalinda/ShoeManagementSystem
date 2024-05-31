@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
+
 public class SaleDetailsDTO {
     private String orderNo;
     private String itemCode;

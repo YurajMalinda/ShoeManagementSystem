@@ -17,14 +17,13 @@ import java.util.List;
 @Data
 @Builder
 public class SaleDTO implements Serializable {
-    @Pattern(regexp = "^ORD-\\d{3}$", message = "Order no. is not valid!")
     private String orderNo;
     private Double totalPrice;
     private Timestamp purchaseDate;
     private String paymentMethod;
-    private Double addedPoints;
+    private Integer addedPoints;
     private String cashierName;
-    private Customer customerCode;
+    private String customerCode;
     private String customerName;
     private List<SaleDetailsDTO> saleDetailsDTOList;
 }

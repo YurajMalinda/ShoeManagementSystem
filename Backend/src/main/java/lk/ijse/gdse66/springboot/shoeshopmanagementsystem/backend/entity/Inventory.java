@@ -17,6 +17,7 @@ import java.util.List;
 @Table
 public class Inventory {
     @Id
+    @Column(name = "item_code")
     private String itemCode;
     private String itemDesc;
     @Column(columnDefinition = "LONGTEXT")

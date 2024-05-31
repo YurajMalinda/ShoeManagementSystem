@@ -559,8 +559,9 @@ header>nav:first-child>li:first-child>a{
 #dashboardContent>section>section>div:nth-child(5){
 }
 
+/*------------------Payment form----------------------*/
 #dashboardContent>section>section>div:nth-child(6){
-    background: #1a2d7a;
+
 }
 
 /*----------------Supplier form---------------*/

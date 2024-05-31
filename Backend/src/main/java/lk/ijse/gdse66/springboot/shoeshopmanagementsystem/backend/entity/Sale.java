@@ -20,7 +20,7 @@ public class Sale {
     private Double totalPrice;
     private Timestamp purchaseDate;
     private String paymentMethod;
-    private Double addedPoints;
+    private Integer addedPoints;
     private String cashierName;
 
     @ManyToOne(fetch = FetchType.LAZY)

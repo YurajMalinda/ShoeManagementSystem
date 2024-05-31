@@ -1,6 +1,8 @@
 package lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.api;
 
 import jakarta.validation.Valid;
+import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.dto.CustomerDTO;
+import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.dto.InventoryDTO;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.dto.SaleDTO;
 import lk.ijse.gdse66.springboot.shoeshopmanagementsystem.backend.service.SaleService;
 import org.springframework.http.HttpStatus;
@@ -19,33 +21,34 @@ public class SaleAPI {
         this.saleService = saleService;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<SaleDTO> getAllSales() {
-        return saleService.getAllSales();
-    }
-
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public SaleDTO saveSale(@Valid @RequestBody SaleDTO saleDTO) {
-        return saleService.saveSale(saleDTO);
+    public void placeOrder(@RequestBody SaleDTO saleDTO) {
+        saleService.placeOrder(saleDTO);
     }
 
-    @GetMapping(value = "/{orderNo}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public SaleDTO getSaleDetails(@PathVariable("orderNo") String orderNo) {
-        return saleService.getSaleDetails(orderNo);
+    @GetMapping(value = "/searchByItemCode/{itemCode}")
+    public InventoryDTO searchByItemCode(@PathVariable("itemCode") String itemCode) {
+        return saleService.searchByItemCode(itemCode);
     }
 
-    @PatchMapping(value = "/{orderNo}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateSale(@PathVariable("orderNo") String orderNo,
-                               @Valid @RequestBody SaleDTO saleDTO){
-        saleDTO.setOrderNo(orderNo);
-        saleService.updateSale(saleDTO);
+    @GetMapping("/loadItemCodes")
+    public List<String> loadAllItemCodes() {
+        return saleService.getAllItemCodes();
     }
 
-    @DeleteMapping(value = "/{orderNo}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteSale(@PathVariable("orderNo") String orderNo) {
-        saleService.deleteSale(orderNo);
+    @GetMapping(value = "/searchByCustomerCode/{customerCode}")
+    public CustomerDTO searchByCustomerCode(@PathVariable("customerCode") String customerCode) {
+        return saleService.searchByCustomerCode(customerCode);
+    }
+
+    @GetMapping("/loadCustomerCodes")
+    public List<String> loadAllCustomerCodes() {
+        return saleService.getAllCustomerCodes();
+    }
+
+    @GetMapping("/nextOrderId")
+    public String nextOrderId(){
+        return saleService.generateNextOrderId();
     }
 }

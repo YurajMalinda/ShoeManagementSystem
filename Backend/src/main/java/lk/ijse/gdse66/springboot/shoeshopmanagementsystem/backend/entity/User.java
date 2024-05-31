@@ -6,55 +6,56 @@
 //import lombok.Data;
 //import lombok.NoArgsConstructor;
 //import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.security.core.userdetails.UserDetails;
 //
 //import java.util.Collection;
-//import java.util.List;
+//import java.util.HashSet;
 //
 //@Data
 //@AllArgsConstructor
 //@NoArgsConstructor
 //@Entity
-//@Table
+//@Table(name = "user")
 //public class User implements UserDetails {
+//
 //    @Id
-//    private String Email;
-//    private String Password;
+//    private String email;
+//    private String name;
+//    private String password;
 //    @Enumerated(EnumType.STRING)
 //    private Role role;
 //
 //    @Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return List.of();
-//    }
-//
-//    @Override
-//    public String getPassword() {
-//        return "";
+//        HashSet<GrantedAuthority> authorities = new HashSet<>();
+//        authorities.add(new SimpleGrantedAuthority(
+//                "Role_"+role.name()));
+//        return authorities;
 //    }
 //
 //    @Override
 //    public String getUsername() {
-//        return "";
+//        return email;
 //    }
 //
 //    @Override
 //    public boolean isAccountNonExpired() {
-//        return false;
+//        return true;
 //    }
 //
 //    @Override
 //    public boolean isAccountNonLocked() {
-//        return false;
+//        return true;
 //    }
 //
 //    @Override
 //    public boolean isCredentialsNonExpired() {
-//        return false;
+//        return true;
 //    }
 //
 //    @Override
 //    public boolean isEnabled() {
-//        return false;
+//        return true;
 //    }
 //}

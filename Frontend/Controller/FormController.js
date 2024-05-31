@@ -2,7 +2,7 @@ initialUI();
 
 function clearAllFields() {
     // Use 'hidden' attribute for better performance and simplicity
-    $("#adminPanelView, #customerForm, #employeeForm, #inventoryForm, #placeOrderForm, #orderDetailsView, #supplierForm").attr('hidden', true);
+    $("#adminPanelView, #customerForm, #employeeForm, #inventoryForm, #placeOrderForm, #paymentForm, #orderDetailsView, #supplierForm").attr('hidden', true);
 }
 
 function initialUI() {
@@ -35,6 +35,10 @@ $("#btnInventory").on('click', () => {
 
 $("#btnPlaceOrder").on('click', () => {
     setViewForm($("#placeOrderForm"));
+});
+
+$("#btnPurchaseOrder").on('click', () => {
+    setViewForm($("#paymentForm"));
 });
 
 $("#btnOrderDetails").on('click', () => {

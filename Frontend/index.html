@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/fonts/Josefin sans/stylesheet1.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="assets/images/icons/fontawesome-free-6.5.2-web/css/all.css">
 </head>
 <body>
 
@@ -245,7 +246,7 @@
                                     </div>
                                     <div class="col-6 col-sm-4">
                                         <label for="joinDate" class="form-label">Join Date:</label>
-                                        <input type="date" class="form-control form-control-sm" id="joinDate" disabled>
+                                        <input type="date" class="form-control form-control-sm" id="joinDate">
                                     </div>
                                     <div class="col-6 col-sm-4">
                                         <label class="form-label">Level:</label><br>
@@ -668,10 +669,210 @@
             </div>
 
             <div id="placeOrderForm" class="mainForm container-fluid">
-                <div>
-                    <div>
-                        <div>
+                <div class="row">
+                    <div class="col-5">
+                        <div class="card shadow" style="font-family: Josefin Sans, cursive;" >
+                            <div class="card-header">Order details</div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <label for="orderId" class="form-label">Order ID:</label>
+                                        <input type="text" disabled class="form-control form-control-sm" placeholder="Order ID" id="orderId">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="orderDate" class="form-label">Date:</label>
+                                        <input type="date" disabled class="form-control form-control-sm" id="orderDate">
+                                    </div>
+                                    <div class="col-5">
+                                        <label for="selectOrderCustomer" class="form-label">Customer:</label>
+                                        <select id="selectOrderCustomer" class="form-select form-select-sm">
+                                            <option selected>--Select customer--</option>
+                                        </select>
+                                    </div>
+                                    <span class="col-2 d-flex align-items-center justify-content-center">OR</span>
+                                    <div class="col-5">
+                                        <label for="cusCode" class="form-label">Customer code:</label>
+                                        <input type="text" disabled class="form-control form-control-sm" placeholder="Customer code" aria-label="Customer code" id="cusCode">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="cusName" class="form-label">Customer name:</label>
+                                        <input type="text" disabled class="form-control form-control-sm" placeholder="Customer Name" aria-label="Customer name" id="cusName">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="cashierName" class="form-label">Cashier name:</label>
+                                        <input type="text" disabled class="form-control form-control-sm" placeholder="Cashier name" aria-label="Cashier name" id="cashierName">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div class="card shadow" style="font-family: Josefin Sans, cursive;">
+                            <div class="card-header">Item details</div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-5">
+                                        <label for="selectOrderItem" class="form-label">Item code:</label>
+                                        <select id="selectOrderItem" class="form-select form-select-sm">
+                                            <option selected>--Select item--</option>
+                                        </select>
+                                    </div>
+                                    <span class="col-2 d-flex align-items-center justify-content-center">OR</span>
+                                    <div class="col-5">
+                                        <label for="searchItemCode" class="form-label">Item Code:</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Search item here..." aria-label="Item Code" id="searchItemCode">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="orderItemCode" class="form-label">Item Code:</label>
+                                        <input type="text" disabled class="form-control form-control-sm" placeholder="Item code" id="orderItemCode">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="orderItemName" class="form-label">Item name:</label>
+                                        <input type="text" disabled class="form-control form-control-sm" placeholder="Item name" id="orderItemName">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="selectOrderItemSize" class="form-label">Size:</label>
+                                        <select id="selectOrderItemSize" class="form-select form-select-sm">
+                                            <option selected>--Select item--</option>
+                                            <option value="size_5">Size-5</option>
+                                            <option value="size_6">Size-6</option>
+                                            <option value="size_7">Size-7</option>
+                                            <option value="size_8">Size-8</option>
+                                            <option value="size_9">Size-9</option>
+                                            <option value="size_10">Size-10</option>
+                                            <option value="size_11">Size-11</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="orderUnitPrice" class="form-label">Unit price:</label>
+                                        <input type="text" disabled class="form-control form-control-sm" placeholder="Unit price" id="orderUnitPrice">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="qtyOnHand" class="form-label">Qty on hand:</label>
+                                        <input type="text" disabled class="form-control form-control-sm" placeholder="Qty on hand" aria-label="qtyOnHand" id="qtyOnHand">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="orderQty" class="form-label">Quantity:</label>
+                                        <input type="number" class="form-control form-control-sm" placeholder="Order quantity" aria-label="orderQty" id="orderQty">
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button id="btnAddToCart" type="button" class="col-3 btn btn-outline-warning btn-sm">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 mt-3">
+                        <div class="table-responsive" style="overflow-y: auto;">
+                            <table class="table table-sm table-bordered table-hover shadow-sm" style="font-family: Josefin Sans, cursive; font-size: 0.9em;">
+                                <thead>
+                                <tr>
+                                    <th style="background-color: #f6f6f6;" scope="col">Item code</th>
+                                    <th style="background-color: #f6f6f6;" scope="col">Item desc</th>
+                                    <th style="background-color: #f6f6f6;" scope="col">Size</th>
+                                    <th style="background-color: #f6f6f6;" scope="col">Unit price</th>
+                                    <th style="background-color: #f6f6f6;" scope="col">Quantity</th>
+                                    <th style="background-color: #f6f6f6;" scope="col">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tblOrderCart"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end" style="font-family: Josefin Sans, cursive">
+                        <button id="btnPurchaseOrder" type="button" class="col-2 btn btn-outline-success btn-sm">Purchase</button>
+                        <div id="scrollDown" class="visually-hidden"></div>
+                    </div>
+                </div>
+            </div>
 
+            <div id="paymentForm" class="mainForm container-fluid">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card" style="font-family: Josefin Sans, cursive">
+                                    <div class="card-header">Order items</div>
+                                    <div class="card-body" id="orderItemsBody">
+
+                                    </div>
+                                    <div class="col-12 border-top d-flex justify-content-end">
+                                        <div class="col-6">
+                                            <div class="row">
+                                                <h7 class="col-6">Total:</h7>
+                                                <span class="col-6" id="txtTotal"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card" style="font-family: Josefin Sans, cursive">
+                                    <div class="card-header fw-bold" style="font-size: 1.5em;">Order summary</div>
+                                    <div class="card-body">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <h3 class="col-6" style="color: red; text-align: end;">Sub Total :</h3>
+                                                <h3 class="col-6" id="txtSubTotal" style="color: red;"></h3>
+                                                <h4 class="col-6" style="text-align: end;">Total :</h4>
+                                                <h4 class="col-6" id="txtOrderTotal"></h4>
+                                            </div>
+                                            <div class="col-5">
+                                                <label for="paymentMethod" class="form-label">Payment method:</label>
+                                                <select id="paymentMethod" class="form-select form-select-sm" onchange="toggleSections()">
+                                                    <option selected value="cash">Cash</option>
+                                                    <option value="card">Card</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row g-3 mt-2 border-top" id="cashSection">
+                                                    <div class="col-6">
+                                                        <label for="cash" class="form-label">Cash:</label>
+                                                        <input type="number" class="form-control form-control-sm" placeholder="Cash" aria-label="cash" id="cash">
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label class="form-label">Discount:</label>
+                                                        <input type="number" class="form-control form-control-sm discount" placeholder="Discount" aria-label="Discount">
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label for="balance" class="form-label">Balance:</label>
+                                                        <input type="number" class="form-control form-control-sm" placeholder="Balance" aria-label="Balance" id="balance">
+                                                    </div>
+                                                </div>
+                                                <div class="row border-top mt-2" id="cardSection" style="display: none;">
+                                                    <img src="assets/images/icons/visa.png" class="ms-3 p-0" style="width: 40px;" />
+                                                    <img src="assets/images/icons/card.png" class="p-0 ms-1" style="width: 40px;"/>
+                                                    <img src="assets/images/icons/amex.png" class="p-0 m-0" style="width: 40px;"/>
+                                                    <div class="col-12">
+                                                        <div class="row g-3">
+                                                            <div class="col-12">
+                                                                <i class="fa-regular fa-credit-card" style="right: 25px; position: absolute; top: 39px;"></i>
+                                                                <label for="cardNumber" class="form-label">Card number:</label>
+                                                                <input type="password" class="form-control form-control-sm" placeholder="Enter last 4 digits..." aria-label="cardNumber" id="cardNumber">
+                                                            </div>
+                                                            <div class="col -6">
+                                                                <label for="bankName" class="form-label">Bank name:</label>
+                                                                <input type="text" class="form-control form-control-sm" placeholder="Bank name" aria-label="bankName" id="bankName">
+                                                            </div>
+                                                            <div class="col -6">
+                                                                <label class="form-label">Discount:</label>
+                                                                <input type="number" class="form-control form-control-sm discount" placeholder="Discount" aria-label="Discount">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 d-flex justify-content-center mt-3" style="font-family: Josefin Sans, cursive">
+                                                <button id="btnPayment" type="button" class="col-4 btn btn-success btn-sm">Pay</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -802,4 +1003,7 @@
 <script src="Controller/validation/SupplierValidation.js"></script>
 <script src="Controller/validation/InventoryValidation.js"></script>
 <script src="Controller/InventoryController.js"></script>
+<script src="Controller/PlaceOrderController.js"></script>
+<script src="Controller/validation/PlaceOrderValidation.js"></script>
+<script src="Controller/PaymentFormController.js"></script>
 </html>
