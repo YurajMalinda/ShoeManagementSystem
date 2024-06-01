@@ -1,3 +1,9 @@
+function placeOrderInitialize() {
+    loadNextOrderId();
+    setDataToOrderDate();
+    loadCustomerCodes();
+    loadItemCodes();
+}
 
 loadNextOrderId();
 setDataToOrderDate();
@@ -57,6 +63,7 @@ function setDataToCartTable() {
                 let newTotal = unitPrice * newQty;
                 $(this).find("td:eq(5)").text(newTotal);
                 calculateTotal();
+                updateOrderItemsBody();
             }
         }
     })
@@ -73,6 +80,7 @@ function setDataToCartTable() {
         $("#tblOrderCart").append(row);
         bindOrderCartTblDblClickEvent();
         calculateTotal();
+        updateOrderItemsBody();
     }
 }
 
@@ -89,6 +97,7 @@ function bindOrderCartTblDblClickEvent() {
                 if (willDelete) {
                     $(this).remove();
                     calculateTotal();
+                    updateOrderItemsBody();
                     Swal.fire({
                         position: "center",
                         icon : "success",
@@ -97,7 +106,11 @@ function bindOrderCartTblDblClickEvent() {
                         timer: 2000
                     });
                 } else {
-                    swal("This data is safe!");
+                    Swal.fire({
+                        icon: "warning",
+                        title: "This order is safe!!!",
+                        timer: 2000
+                    });
                 }
             });
     });
@@ -191,6 +204,30 @@ $("#btnPayment").click(function () {
         }
     })
 })
+
+function updateOrderItemsBody() {
+    $("#orderItemsBody").empty(); // Clear existing content
+
+    $("#tblOrderCart tr").each(function () {
+        let itemCode = $(this).find("td:eq(0)").text();
+        let itemName = $(this).find("td:eq(1)").text();
+        let itemSize = $(this).find("td:eq(2)").text();
+        let unitPrice = $(this).find("td:eq(3)").text();
+        let buyingQty = $(this).find("td:eq(4)").text();
+        let total = $(this).find("td:eq(5)").text();
+
+        let itemRow = `<div class="row">
+                           <div class="col-2">${itemCode}</div>
+                           <div class="col-2">${itemName}</div>
+                           <div class="col-2">${itemSize}</div>
+                           <div class="col-2">${unitPrice}</div>
+                           <div class="col-2">${buyingQty}</div>
+                           <div class="col-2">${total}</div>
+                       </div>`;
+        $("#orderItemsBody").append(itemRow);
+    });
+}
+
 
 // -------------------calculate balance--------------------------
 $('#cash').on("keyup",function (){
@@ -314,9 +351,17 @@ $("#selectOrderItem").change(function () {
         error:function (xhr, status, error) {
             console.log("searchCusById() ="+error)
             if (xhr.status===404){
-                swal("Error", "This Item does not exits!", "error");
+                Swal.fire({
+                    icon: "warning",
+                    title: "This item does not exists!!!",
+                    timer: 2000
+                });
             } else {
-                swal("Error", "Failed to retrieve item details. Please try again later.", "error");
+                Swal.fire({
+                    icon: "warning",
+                    title: "Failed to retrieve item details. Please try again later!!!",
+                    timer: 2000
+                });
             }
         }
     })
@@ -336,8 +381,11 @@ $("#selectOrderCustomer").change(function () {
         error:function (xhr, status, error) {
             console.log("searchCusById() ="+error)
             if (xhr.status===404){
-                swal("Error", "This Customer does not exits!", "error");
-            }
+                Swal.fire({
+                    icon: "warning",
+                    title: "This customer does not exists!!!",
+                    timer: 2000
+                });            }
         }
     })
 })

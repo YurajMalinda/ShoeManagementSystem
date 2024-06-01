@@ -2,13 +2,13 @@ initialUI();
 
 function clearAllFields() {
     // Use 'hidden' attribute for better performance and simplicity
-    $("#adminPanelView, #customerForm, #employeeForm, #inventoryForm, #placeOrderForm, #paymentForm, #orderDetailsView, #supplierForm").attr('hidden', true);
+    $("#adminPanelView, #customerForm, #employeeForm, #inventoryForm,#productsViewForm, #placeOrderForm, #paymentForm, #orderDetailsView, #supplierForm").attr('hidden', true);
 }
 
 function initialUI() {
     clearAllFields();
     // Use 'hidden' attribute for better performance and simplicity
-    $("#placeOrderForm").removeAttr('hidden');
+    $("#productsViewForm").removeAttr('hidden');
 }
 
 function setViewForm(viewObject) {
@@ -35,6 +35,7 @@ $("#btnInventory").on('click', () => {
 
 $("#btnPlaceOrder").on('click', () => {
     setViewForm($("#placeOrderForm"));
+    placeOrderInitialize();
 });
 
 $("#btnPurchaseOrder").on('click', () => {
@@ -43,12 +44,17 @@ $("#btnPurchaseOrder").on('click', () => {
 
 $("#btnOrderDetails").on('click', () => {
     setViewForm($("#orderDetailsView"));
+    orderDetailInitialize();
 });
 
 $("#btnSupplier").on('click', () => {
     setViewForm($("#supplierForm"));
 });
 
+$("#btnProducts").on('click', () => {
+    setViewForm($("#productsViewForm"));
+    productInitialize();
+});
 
 // ----------------------Current date function--------------
 // document.addEventListener('DOMContentLoaded', function() {

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.aspectj.apache.bcel.classfile.Code;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -24,8 +25,8 @@ public class Sale {
     private String cashierName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customerCode", referencedColumnName = "customerCode")
-    private Customer customerCode;
+    @JoinColumn(name = "customer_code", referencedColumnName = "customerCode")
+    private Customer customer_code;
     private String customerName;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "orderNo")

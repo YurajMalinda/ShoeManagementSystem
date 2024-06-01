@@ -44,7 +44,7 @@ public void placeOrder(SaleDTO saleDTO) {
 
     // Update customer
     Customer customer = customerRepo.findByCustomerCode(saleDTO.getCustomerCode());
-    sale.setCustomerCode(customer);
+    sale.setCustomer_code(customer);
 
     Integer currentPoints = customer.getTotalPoints();
     if (currentPoints == null) {

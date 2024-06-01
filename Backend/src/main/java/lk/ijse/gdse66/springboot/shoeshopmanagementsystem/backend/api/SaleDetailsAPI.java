@@ -26,8 +26,8 @@ public class SaleDetailsAPI {
         return saleDetailService.getAllRefundOrders();
     }
 
-    @DeleteMapping("/refundOrder/{orderNo}")
-    public ResponseEntity<String> refundOrder(@PathVariable("orderNo") String orderNo) {
+    @DeleteMapping("/refundOrder")
+    public ResponseEntity<String> refundOrder(@RequestParam String orderNo) {
         System.out.println("refundOrder = "+orderNo);
         try {
             boolean isRefunded = saleDetailService.refundOrder(orderNo);

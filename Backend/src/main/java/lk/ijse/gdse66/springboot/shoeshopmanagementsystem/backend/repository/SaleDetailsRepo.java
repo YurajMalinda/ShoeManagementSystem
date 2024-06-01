@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface SaleDetailsRepo extends JpaRepository<SaleDetail, SaleDetailPK> {
-    @Query(value = "SELECT * FROM saleDetail WHERE orderNo = :orderId", nativeQuery = true)
+    @Query(value = "SELECT * FROM sale_detail WHERE order_no = :orderId", nativeQuery = true)
     List<SaleDetail> findSaleDetailByOrderNo(String orderId);
 }

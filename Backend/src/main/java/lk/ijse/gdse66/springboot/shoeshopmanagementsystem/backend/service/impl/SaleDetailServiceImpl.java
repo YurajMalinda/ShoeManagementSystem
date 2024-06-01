@@ -51,9 +51,9 @@ public class SaleDetailServiceImpl implements SaleDetailService {
 //            ----------------remove customer added points--------------
 
             Sale refundOrder = saleRepo.findByOrderNo(orderNo);
-            System.out.println(refundOrder.getCustomerCode().getCustomerCode());
+            System.out.println(refundOrder.getCustomer_code().getCustomerCode());
             //System.out.println(refundOrder.getCustomer_id().getCode());
-            Customer customer = customerRepo.findByCustomerCode(refundOrder.getCustomerCode().getCustomerCode());
+            Customer customer = customerRepo.findByCustomerCode(refundOrder.getCustomer_code().getCustomerCode());
             //System.out.println(customer);
 
             int currentPoints = customer.getTotalPoints();
