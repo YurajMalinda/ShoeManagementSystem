@@ -1,3 +1,8 @@
+function supplierInitialize() {
+    getAllSupplier();
+    loadNextSupplierCode();
+}
+
 getAllSupplier();
 loadNextSupplierCode();
 
@@ -26,9 +31,9 @@ function supSearchByName(name) {
         url: "http://localhost:8080/api/v1/supplier/searchByName/"+name,
         method: "GET",
         dataType: "json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success: function (details) {
             if (details.length === 0){
                 Swal.fire({
@@ -70,9 +75,9 @@ function supSearchById(code) {
         url: "http://localhost:8080/api/v1/supplier/searchById/" + code,
         method: "GET",
         dataType: "json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success: function (details) {
             $("#tblSupplier").empty();
             console.log(details);
@@ -111,9 +116,9 @@ function loadNextSupplierCode() {
     $.ajax({
         url:"http://localhost:8080/api/v1/supplier/nextId",
         method:"GET",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success:function (resp) {
             $("#supplierCode").val(resp);
         },
@@ -177,9 +182,9 @@ function saveSupplier() {
             landlineContactNo: landlineNo,
             email : email
         }),
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
 
         success : function (details) {
             console.log(details);
@@ -222,9 +227,9 @@ function getAllSupplier(){
         type: "GET",
         url: "http://localhost:8080/api/v1/supplier",
         dataType: "json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success : function (details) {
             console.log("Success: ", details);
             console.log(details.supplierCode);
@@ -311,9 +316,9 @@ function deleteSupplier(code) {
                 type : "DELETE",
                 url : "http://localhost:8080/api/v1/supplier/" + code,
                 contentType : "application/json",
-                // headers: {
-                //     "Authorization": "Bearer " + localStorage.getItem("token")
-                // },
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                },
                 success : function (details) {
                     Swal.fire({
                         icon : "success",
@@ -397,9 +402,9 @@ function updateSupplier(code) {
                         landlineContactNo: landlineNo,
                         email : email
                     }),
-                // headers: {
-                //     "Authorization": "Bearer " + localStorage.getItem("token")
-                // },
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                },
                 success : function (details) {
                     console.log(details);
                     Swal.fire({

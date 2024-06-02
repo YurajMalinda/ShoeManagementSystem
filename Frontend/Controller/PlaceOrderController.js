@@ -1,15 +1,14 @@
+loadNextOrderId();
+setDataToOrderDate();
+loadCustomerCodes();
+loadItemCodes();
+
 function placeOrderInitialize() {
     loadNextOrderId();
     setDataToOrderDate();
     loadCustomerCodes();
     loadItemCodes();
 }
-
-loadNextOrderId();
-setDataToOrderDate();
-loadCustomerCodes();
-loadItemCodes();
-$('#cashierName').val("Yuraj");
 
 let itemObj;
 
@@ -182,9 +181,9 @@ $("#btnPayment").click(function () {
         method: "POST",
         data: jsonObj,
         contentType: "application/json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success: function (resp, textStatus, jqxhr) {
             console.log("placeOder success: ", resp);
             clearItemDetailsInputFields();
@@ -338,9 +337,9 @@ $("#selectOrderItem").change(function () {
     $.ajax({
         url:"http://localhost:8080/api/v1/sales/searchByItemCode/"+code,
         method:"GET",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success:function (resp) {
             itemObj = resp;
             console.log(itemObj);
@@ -371,9 +370,9 @@ $("#selectOrderCustomer").change(function () {
     $.ajax({
         url:"http://localhost:8080/api/v1/sales/searchByCustomerCode/"+code,
         method:"GET",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success:function (resp) {
             $("#cusCode").val(resp.customerCode);
             $("#cusName").val(resp.customerName);
@@ -393,9 +392,9 @@ function loadItemCodes() {
     $.ajax({
         url:"http://localhost:8080/api/v1/sales/loadItemCodes",
         method:"GET",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success:function (resp) {
             $("#selectOrderItem").empty().append(`<option selected></option>`);
             $.each(resp, function (index, itemCode) {
@@ -411,9 +410,9 @@ function loadCustomerCodes() {
     $.ajax({
         url:"http://localhost:8080/api/v1/sales/loadCustomerCodes",
         method:"GET",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success:function (resp) {
             $("#selectOrderCustomer").empty().append(`<option selected></option>`);
             $.each(resp, function (index, customerCode) {
@@ -429,9 +428,9 @@ function loadNextOrderId() {
     $.ajax({
         url:"http://localhost:8080/api/v1/sales/nextOrderId",
         method:"GET",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success:function (resp) {
             $("#orderId").val(resp);
         },

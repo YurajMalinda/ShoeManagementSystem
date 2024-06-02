@@ -54,10 +54,11 @@
                     <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="InputPassword" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="InputPassword">
+                    <label for="inputPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="inputPassword">
                 </div>
                 <button type="submit" class="btn btn-primary" id="btnLogIn">Log in</button>
+                <p class="text-center">Don't have an account?<a href="#signUpForm" id="linkSignUp">Log in</a></p>
             </form>
         </div>
     </div>
@@ -66,25 +67,40 @@
 <section id="signUpForm" class="page">
     <div></div>
     <div>
-        <form>
-            <h1>HelloShoes.</h1>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-
-            <div class="col-6">
-                <label for="selectFormCustomer">Role</label>
-                <select id="selectFormCustomer" class="form-select">
-                    <option selected>Admin</option>
+        <form class="row">
+            <h1 class="text-center">HelloShoes.</h1>
+            <div class="mb-3 col-12">
+                <label for="selectRole">Role</label>
+                <select id="selectRole" class="form-select">
+                    <option selected value="USER">User</option>
+                    <option selected value="ADMIN">Admin</option>
                 </select>
             </div>
-            <button id="btnSignUp" type="submit" class="btn btn-primary">Sign up</button>
-            <p>Already have an account?<a href="#loginForm" id="linkLogin">Log in</a></p>
+            <div class="mb-3 col-12">
+                <label for="inputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp">
+            </div>
+
+            <div class="row col-12">
+                <div class="mb-3 col-6">
+                    <label for="firstName" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="firstName" aria-describedby="firstName">
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="lastName" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="lastName" aria-describedby="lastName">
+                </div>
+            </div>
+            <div class="mb-3 col-12">
+                <label for="inputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="inputPassword1">
+            </div>
+            <div class="mb-3 col-12">
+                <label for="confirmInputPassword1" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmInputPassword1">
+            </div>
+            <button id="btnSignUp" type="submit" class="btn btn-primary col-8">Sign up</button>
+            <p class="text-center">Already have an account?<a href="#loginForm" id="linkLogin">Log in</a></p>
         </form>
     </div>
 </section>
@@ -133,11 +149,22 @@
     </div>
     <section style="background: #f9fdff;">
         <nav class="navbar">
-            <div class="container-fluid">
+            <div class="container-fluid justify-content-end">
                 <form class="d-flex align-items-center" role="search">
                     <input class="form-control me-2 align-self-center form-control-sm" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success btn-sm" type="submit">Search</button>
                 </form>
+                <ul class="navbar-nav flex-row">
+                    <li id="admin-sign-up-nav" class="nav-item ms-4">
+                        <a class="nav-link" href="#"><i class="fs-5 fa-solid fa-user-plus"></i></a>
+                    </li>
+                    <li id="admin-log-in-nav" class="nav-item ms-4">
+                        <a class="nav-link" href="#"><i class="fs-5 fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i></a>
+                    </li>
+                </ul>
+                <div id="admin-img-div" class="d-flex ms-5">
+                    <img src="assets/images/userNotFound.png"  style="border-radius: 1.4rem; width: 40px; height: 40px" alt="logo icon not found">
+                </div>
             </div>
         </nav>
         <section >
@@ -1120,7 +1147,7 @@
 <script src="assets/lib/Bootstrap/js/bootstrap.bundle.js"></script>
 <script src="Controller/FormController.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="Controller/HomeController.js"></script>
+<script src="Controller/AdminPanelController.js"></script>
 <script src="Controller/CustomerController.js"></script>
 <script src="Controller/validation/CustomerValidation.js"></script>
 <script src="Controller/EmployeeController.js"></script>
@@ -1134,4 +1161,8 @@
 <script src="Controller/PaymentFormController.js"></script>
 <script src="Controller/OrderDetailsController.js"></script>
 <script src="Controller/ProductController.js"></script>
+<script src="Controller/validation/SignUpValidation.js"></script>
+<script src="Controller/SignUpController.js"></script>
+<script src="Controller/LoginController.js"></script>
+<script src="Controller/validation/LoginValidation.js"></script>
 </html>

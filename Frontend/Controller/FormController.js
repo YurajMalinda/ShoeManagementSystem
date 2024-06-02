@@ -8,7 +8,8 @@ function clearAllFields() {
 function initialUI() {
     clearAllFields();
     // Use 'hidden' attribute for better performance and simplicity
-    $("#productsViewForm").removeAttr('hidden');
+    $("#adminPanelView").removeAttr('hidden');
+    setImageForHeader();
 }
 
 function setViewForm(viewObject) {
@@ -63,4 +64,33 @@ $("#btnProducts").on('click', () => {
 //     const today = new Date().toLocaleDateString(undefined, options);
 //     currentDateElement.textContent = today;
 // });
+
+function setImageForHeader() {
+    let email = localStorage.getItem("empEmail")
+    console.log(email)
+
+    $.ajax({
+        url: "http://localhost:8080/api/v1/employee/searchByEmail?email="+email,
+        method: "GET",
+        dataType: "json",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        success: function (resp) {
+            var imageElement = `<img id="headerImg" alt="image" src="data:image/png;base64,${resp.employeeProfilePic}" width="40px" height="40px">`;
+            $("#admin-img-div").empty();
+            $("#admin-img-div").append(imageElement);
+
+            $("#cashierName").val(resp.employeeName);
+        },
+        error: function (xhr, textStatus, error) {
+            console.log("empSearchByEmail error: ", error);
+            console.log("empSearchByEmail error: ", xhr.status);
+            if (xhr.status===404){
+                swal("Error", "This employee does not exits!", "error");
+            }
+        }
+    })
+}
+
 

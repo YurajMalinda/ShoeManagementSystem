@@ -9,9 +9,9 @@ function getAllRefundOrders() {
         url: "http://localhost:8080/api/v1/saleDetail/getAllRefundOrders",
         method: "GET",
         dataType: "json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success: function (resp) {
             console.log(resp)
             loadRefundOrdersDataToTable(resp);
@@ -61,9 +61,9 @@ function refundOrder() {
         url: "http://localhost:8080/api/v1/saleDetail/refundOrder",
         method: "DELETE",
         data: { orderNo: $(this).closest('tr').find('th').text() },
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success: function(resp) {
             Swal.fire({
                 icon : "success",
@@ -96,9 +96,9 @@ function orderSearchByOrderId(orderId) {
         url: "http://localhost:8080/api/v1/saleDetail/searchByOrderId/"+orderId,
         method: "GET",
         dataType: "json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success: function (resp) {
             loadOrderDataToTableByOrderId(resp);
         },
@@ -155,9 +155,9 @@ $("#order-detail-table").on('click', 'tr', function () {
         url: "http://localhost:8080/api/v1/saleDetail/getOrderDetailListByOrderId/"+orderIds,
         method: "GET",
         dataType: "json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success: function (resp) {
             loadOrderDetailsDataToTableByOrderId(resp);
         },
@@ -231,9 +231,9 @@ function refundOrderDetail() {
         method: "DELETE",
         data: jsonObj,
         contentType: "application/json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success: function(resp) {
             Swal.fire({
                 icon : "success",

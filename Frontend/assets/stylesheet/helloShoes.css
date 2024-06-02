@@ -150,7 +150,6 @@ header>nav:first-child>li:first-child>a{
 #signUpForm{
     position: relative;
     display: flex;
-    justify-content: space-between;
 }
 
 #signUpForm>div:nth-child(1){
@@ -193,7 +192,7 @@ header>nav:first-child>li:first-child>a{
 
 #signUpForm>div:nth-child(2)>form{
     position: relative;
-    width: 70%;
+    width: 75%;
     align-self: center;
     display: flex;
     flex-direction: column;
@@ -210,12 +209,6 @@ header>nav:first-child>li:first-child>a{
         transform: translateX(0);
         opacity: 1;
     }
-}
-
-#signUpForm>div:nth-child(2)>form>div:nth-child(4){
-    width: 40%;
-    align-self: flex-start;
-    margin-bottom: 40px;
 }
 
 #signUpForm>div:nth-child(2)>form>button{
@@ -300,7 +293,7 @@ header>nav:first-child>li:first-child>a{
 
 #loginForm > div > div > form > button {
     align-self: center;
-    width: 50%;
+    width: 60%;
     margin-top: 20px;
 }
 

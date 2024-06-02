@@ -14,5 +14,4 @@ import lombok.NoArgsConstructor;
 public class JwtAuthResponse {
     private String token;
     private Role role;
-    private String name;
 }

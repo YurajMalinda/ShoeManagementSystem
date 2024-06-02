@@ -33,9 +33,9 @@ $("#btnSearchEmployee").click(function () {
     $.ajax({
         type : "GET",
         url: "http://localhost:8080/api/v1/employees/" + empCode,
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success : function (details) {
             console.log(details);
             console.log(details.employeeCode);
@@ -77,6 +77,9 @@ function searchEmployee(employeeCode) {
     $.ajax({
         type : "GET",
         url: "http://localhost:8080/api/v1/employees/" + employeeCode,
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success : function (details) {
             console.log(details);
             return true;
@@ -142,10 +145,9 @@ function saveEmployee() {
         data: formData,
         processData: false,
         contentType: false,
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
-
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success : function (details) {
             console.log(details);
             Swal.fire({
@@ -187,9 +189,9 @@ function getAllEmployee(){
         type: "GET",
         url: "http://localhost:8080/api/v1/employees",
         dataType: "json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success : function (details) {
             console.log("Success: ", details);
             console.log(details.employeeCode);
@@ -331,9 +333,9 @@ function empProPicSearchByID(empCode) {
         url: "http://localhost:8080/api/v1/employees/" + empCode,
         method: "GET",
         dataType: "json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success: function (resp) {
             setEmpImage(resp);
         },
@@ -377,13 +379,13 @@ function deleteEmployee(code) {
                 type : "DELETE",
                 url : "http://localhost:8080/api/v1/employees/" + code,
                 dataType: "json",
-                // headers: {
-                //     "Authorization": "Bearer " + localStorage.getItem("token")
-                // },
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                },
                 success : function (details) {
                     Swal.fire({
                         icon : "success",
-                        title : "Customer has been deleted successfully!...",
+                        title : "Employee has been deleted successfully!...",
                         showConfirmButton: false,
                         timer: 2000
                     });
@@ -394,7 +396,7 @@ function deleteEmployee(code) {
                     console.log("ÄJAX error: "+ textStatus, errorThrown);
                     Swal.fire({
                         icon: "warning",
-                        title: "Customer has been deleted unsuccessfully!!!",
+                        title: "Employee has been deleted unsuccessfully!!!",
                         timer: 2000
                     });
                 }
@@ -417,7 +419,7 @@ function updateEmployee(code) {
         Swal.fire({
             icon: "warning",
             title: "Oooops...",
-            text: "No such customer. Please check the ID!..."
+            text: "No such employee. Please check the ID!..."
         });
     } else {
         let confirmation = confirm("Do you want to update this customer ?.")
@@ -484,15 +486,15 @@ function updateEmployee(code) {
                 processData: false,
                 contentType: false,
                 data: formData,
-                // headers: {
-                //     "Authorization": "Bearer " + localStorage.getItem("token")
-                // },
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                },
                 success : function (details) {
                     console.log(details);
                     Swal.fire({
                         position: "center",
                         icon : "success",
-                        title : "Customer has been updated successfully!...",
+                        title : "Employee has been updated successfully!...",
                         showConfirmButton: false,
                         timer: 2000
                     });
@@ -504,7 +506,7 @@ function updateEmployee(code) {
                     Swal.fire({
                         position: "center",
                         icon: "warning",
-                        title: "Customer has been not updated!!!",
+                        title: "Employee has been not updated!!!",
                         showConfirmButton: false,
                         timer: 2000
                     });

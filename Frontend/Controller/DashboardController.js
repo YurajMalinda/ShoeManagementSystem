@@ -59,6 +59,7 @@
 // Initialize the UI when the document is ready
 $(document).ready(() => {
     initUI();
+    setImageForHeader();
 });
 
 function clearAll() {
@@ -107,8 +108,8 @@ $("#linkLogin").on("click", () => {
     setView($("#loginForm"));
 })
 
-$("#btnLogIn").on("click", () => {
-    setView($("#dashboardContent"));
+$("#linkSignUp").on("click", () => {
+    setView($("#signUpForm"));
 })
 
 $("#btnBackTOHome").on("click", () => {

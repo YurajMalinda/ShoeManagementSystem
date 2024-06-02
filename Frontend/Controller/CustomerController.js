@@ -7,6 +7,9 @@ $("#btnSearchCustomer").click(function () {
     $.ajax({
         type : "GET",
         url: "http://localhost:8080/api/v1/customers/" + cusId,
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success : function (details) {
             console.log(details);
             console.log(details.customerCode);
@@ -44,6 +47,9 @@ function searchCustomer(customerId) {
     $.ajax({
         type : "GET",
         url: "http://localhost:8080/api/v1/customers/" + customerId,
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success : function (details) {
             console.log(details);
             return true;
@@ -81,6 +87,9 @@ function saveCustomer() {
     $.ajax({
         type : "POST",
         url : "http://localhost:8080/api/v1/customers",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         contentType : "application/json",
         data : JSON.stringify({
             customerCode : cusCode,
@@ -140,6 +149,9 @@ function getAllCustomer(){
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/api/v1/customers",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success : function (details) {
             console.log("Success: ", details);
             console.log(details.customerCode);
@@ -249,6 +261,9 @@ function deleteCustomer(code) {
             $.ajax({
                 type : "DELETE",
                 url : "http://localhost:8080/api/v1/customers/" + code,
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                },
                 contentType : "application/json",
                 success : function (details) {
                     Swal.fire({
@@ -320,6 +335,9 @@ function updateCustomer(code) {
             $.ajax({
                 type : "PATCH",
                 url : "http://localhost:8080/api/v1/customers/" + cusCode,
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                },
                 contentType: "application/json",
                 data : JSON.stringify(
                     {

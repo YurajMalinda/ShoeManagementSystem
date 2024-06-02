@@ -1,3 +1,8 @@
+function inventoryInitialize() {
+    getAllItem();
+    loadAllSuppliersCode();
+    loadNextItemCode();
+}
 
 getAllItem();
 loadAllSuppliersCode();
@@ -41,9 +46,9 @@ function itemSearchByName(name) {
         url: "http://localhost:8080/api/v1/inventory/searchByName/"+name,
         method: "GET",
         dataType: "json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success: function (details) {
             if (details.length === 0){
                 Swal.fire({
@@ -97,9 +102,9 @@ function itemSearchById(code) {
         url: "http://localhost:8080/api/v1/inventory/searchById/" + code,
         method: "GET",
         dataType: "json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success: function (details) {
             $("#tblInventory").empty();
             console.log(details);
@@ -151,9 +156,9 @@ function loadNextItemCode(prefix) {
     $.ajax({
         url:"http://localhost:8080/api/v1/inventory/nextId/" + prefix,
         method:"GET",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success:function (resp) {
             $("#itemCode").val(resp);
         },
@@ -168,6 +173,9 @@ function searchItem(itemCode) {
     $.ajax({
         type : "GET",
         url: "http://localhost:8080/api/v1/inventory/" + itemCode,
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success : function (details) {
             console.log(details);
             return true;
@@ -277,9 +285,9 @@ function saveItem() {
             dataType: "json",
             contentType:"application/json",
             data: JSON.stringify(itemObj),
-            // headers: {
-            //     "Authorization": "Bearer " + localStorage.getItem("token")
-            // },
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            },
 
             success : function (details) {
                 console.log(details);
@@ -323,9 +331,9 @@ function getAllItem(){
         type: "GET",
         url: "http://localhost:8080/api/v1/inventory",
         dataType: "json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success : function (details) {
             console.log("Success: ", details);
             console.log(details.itemCode);
@@ -475,9 +483,9 @@ function deleteItem(code) {
                 type : "DELETE",
                 url : "http://localhost:8080/api/v1/inventory/" + code,
                 dataType: "json",
-                // headers: {
-                //     "Authorization": "Bearer " + localStorage.getItem("token")
-                // },
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                },
                 success : function (details) {
                     Swal.fire({
                         icon : "success",
@@ -586,9 +594,9 @@ function updateItem(code) {
                     dataType: "json",
                     contentType:"application/json",
                     data: JSON.stringify(itemObj),
-                    // headers: {
-                    //     "Authorization": "Bearer " + localStorage.getItem("token")
-                    // },
+                    headers: {
+                        "Authorization": "Bearer " + localStorage.getItem("token")
+                    },
                     success : function (details) {
                         console.log(details);
                         Swal.fire({
@@ -625,9 +633,9 @@ function loadAllSuppliersCode() {
         url: "http://localhost:8080/api/v1/inventory/loadSuppliersCode",
         method: "GET",
         dataType: "json",
-        // headers: {
-        //     "Authorization": "Bearer " + localStorage.getItem("token")
-        // },
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
         success: function (resp) {
             supplierAllData = resp;
             $.each(resp,function (index, supplier) {
