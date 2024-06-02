@@ -82,7 +82,7 @@ header>nav:first-child>li:first-child>a{
 
 #homeContent>div{
     position: relative;
-    height: 90vh;
+    height: 100vh;
 }
 
 #homeContent>div:nth-child(2)>div:first-child{
@@ -181,6 +181,7 @@ header>nav:first-child>li:first-child>a{
     height: 100%;
     justify-content: center;
     display: flex;
+    background: #fffbfc;;
 }
 
 #signUpForm>div:nth-child(2)>form>h1{

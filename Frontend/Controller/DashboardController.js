@@ -101,7 +101,7 @@ function saveLastView(id) {
 
 // Combine event listeners for buttons
 $("#btnGetStarted, #btnGetStarted1").on('click', () => {
-    setView($("#signUpForm"));
+    setView($("#loginForm"));
 });
 
 $("#linkLogin").on("click", () => {
